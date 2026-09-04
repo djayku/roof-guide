@@ -172,6 +172,30 @@
   .research-card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
   .tag{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;padding:3px 8px;background:var(--rule);color:var(--ink);font-weight:500}
 
+  /* ===== Vendor contacts (tappable action cards) ===== */
+  .vendor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .vendor-card{background:var(--bone);border:1px solid var(--rule);padding:24px;display:flex;flex-direction:column;gap:14px;position:relative}
+  .vendor-card.top::before{content:'TOP PICK';position:absolute;top:0;right:0;background:var(--terracotta);color:var(--bone);font-family:'Outfit',sans-serif;font-weight:800;font-size:10px;letter-spacing:0.22em;padding:5px 12px}
+  .vendor-card .cn-name{font-family:'Outfit',sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em;color:var(--ink);line-height:1.1}
+  .vendor-card .en-name{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--terracotta);font-weight:500;letter-spacing:0.04em;margin-top:2px}
+  .vendor-card .vendor-addr{font-size:13px;line-height:1.5;color:#2a2a2a}
+  .vendor-card .vendor-addr a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
+  .vendor-card .vendor-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto}
+  .vendor-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 8px;background:var(--cream);border:1px solid var(--rule);text-decoration:none;color:var(--ink);font-family:'Outfit',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;transition:all .15s ease;cursor:pointer;text-align:center;line-height:1.3}
+  .vendor-btn:hover{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  .vendor-btn .ico{font-size:18px;font-weight:400;line-height:1}
+  .vendor-card .vendor-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+  .inquiry-block{background:var(--ink);color:var(--bone);padding:24px;margin-top:24px;display:flex;flex-direction:column;gap:14px}
+  .inquiry-block h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;color:var(--bone);letter-spacing:0.04em}
+  .inquiry-block .inquiry-script{font-family:'Inter',sans-serif;font-size:13px;line-height:1.6;color:rgba(244,239,230,0.85);background:rgba(244,239,230,0.06);padding:14px 16px;border-left:2px solid var(--terracotta);white-space:pre-wrap}
+  .inquiry-block .inquiry-actions{display:flex;gap:10px;flex-wrap:wrap}
+  .inquiry-btn{font-family:'Outfit',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:12px 20px;background:var(--terracotta);color:var(--bone);border:none;cursor:pointer;transition:background .15s ease}
+  .inquiry-btn:hover{background:#b56a4d}
+  .inquiry-btn.ghost{background:transparent;color:var(--bone);border:1px solid rgba(244,239,230,0.3)}
+  .inquiry-btn.ghost:hover{background:rgba(244,239,230,0.08)}
+
+  @media (max-width: 920px){.vendor-grid{grid-template-columns:1fr}}
+
   /* ===== Shared notes ===== */
   .shared-notes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   .note-col{background:var(--cream);border:1px solid var(--rule);padding:24px}
@@ -250,6 +274,7 @@
     <a href="#top" class="logo">Roof<span class="period">.</span></a>
     <nav class="nav">
       <a href="#decisions">Decisions</a>
+      <a href="#quotes">Quotes</a>
       <a href="#timeline">Timeline</a>
       <a href="#tasks">Tasks</a>
       <a href="#research">Research</a>
@@ -332,12 +357,110 @@
   </div>
 </section>
 
+<!-- GET QUOTES — TAPPABLE VENDOR CONTACTS -->
+<section id="quotes" class="tight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">02</span>
+        <span class="eyebrow">Get quotes</span>
+      </div>
+      <div>
+        <h2 class="section-title">Tap to call, WhatsApp,<br>or email the three vendors.</h2>
+        <p style="font-size:14px;color:var(--muted);margin-top:16px;max-width:560px">First quote received (Sep 4): <strong>HK$80k</strong> basic reno · <strong>HK$160k</strong> reno + solar · <strong>HK$2,500/mo</strong> FiT. Get 2 more quotes for comparison before locking vendor.</p>
+      </div>
+    </div>
+
+    <div class="vendor-grid">
+
+      <!-- VENDOR 1: NEW STAR ENERGY (TOP PICK) -->
+      <div class="vendor-card top">
+        <div>
+          <div class="cn-name">新煋能源</div>
+          <div class="en-name">NEW STAR ENERGY · 廠商一</div>
+        </div>
+        <div class="vendor-addr">
+          <a href="https://maps.google.com/?q=Shop+D+G%2FF+Hoi+Shuen+Bldg+96+Hop+Yick+Rd+Yuen+Long" target="_blank" rel="noopener">Shop D, G/F Hoi Shuen Bldg, 96 Hop Yick Rd, Yuen Long</a>
+        </div>
+        <div class="vendor-actions">
+          <a class="vendor-btn" href="tel:+85260222108"><span class="ico">☎</span><span>Call</span></a>
+          <a class="vendor-btn" href="https://wa.me/85260222108?text=Hi%2C%20I%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation." target="_blank" rel="noopener"><span class="ico">💬</span><span>WhatsApp</span></a>
+          <a class="vendor-btn" href="mailto:info@nsenergy.com.hk?subject=Solar%20canopy%20quote%20%E2%80%94%20Kam%20Sheung%20Rd&body=Hi%2C%0A%0AI%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation.%0A%0AThanks%2C%0AJay"><span class="ico">✉</span><span>Email</span></a>
+        </div>
+        <div class="vendor-tags">
+          <span class="tag">Hyper-local YL</span>
+          <span class="tag">Demo + AP + FiT</span>
+          <span class="tag">6022 2108</span>
+          <span class="tag">5545 8297</span>
+        </div>
+      </div>
+
+      <!-- VENDOR 2: SOLARHK -->
+      <div class="vendor-card">
+        <div>
+          <div class="cn-name">香港太陽能</div>
+          <div class="en-name">SOLARHK · 廠商二</div>
+        </div>
+        <div class="vendor-addr">
+          <a href="https://maps.google.com/?q=Rm+B+7%2FF+Dade+Ind+Bldg+Kwai+Chung" target="_blank" rel="noopener">Rm B, 7/F, Dade Industrial Building, Kwai Chung</a>
+        </div>
+        <div class="vendor-actions">
+          <a class="vendor-btn" href="tel:+85281758176"><span class="ico">☎</span><span>Call</span></a>
+          <a class="vendor-btn" href="https://wa.me/85281758176?text=Hi%2C%20I%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation." target="_blank" rel="noopener"><span class="ico">💬</span><span>WhatsApp</span></a>
+          <a class="vendor-btn" href="mailto:info@solarhk.org?subject=Solar%20canopy%20quote%20%E2%80%94%20Kam%20Sheung%20Rd&body=Hi%2C%0A%0AI%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation.%0A%0AThanks%2C%0AJay"><span class="ico">✉</span><span>Email</span></a>
+        </div>
+        <div class="vendor-tags">
+          <span class="tag">Turnkey ~$128k</span>
+          <span class="tag">Trina / Longi</span>
+          <span class="tag">Huawei inverter</span>
+        </div>
+      </div>
+
+      <!-- VENDOR 3: BW GREEN POWER -->
+      <div class="vendor-card">
+        <div>
+          <div class="cn-name">百威綠能</div>
+          <div class="en-name">BW GREEN POWER · 廠商三</div>
+        </div>
+        <div class="vendor-addr">
+          <a href="https://maps.google.com/?q=Rm+D-G+5%2FF+Wah+Lik+Ind+Centre+Tsuen+Wan" target="_blank" rel="noopener">Rm D-G, 5/F, Wah Lik Ind Centre, Tsuen Wan</a>
+        </div>
+        <div class="vendor-actions">
+          <a class="vendor-btn" href="tel:+85221274915"><span class="ico">☎</span><span>Call</span></a>
+          <a class="vendor-btn" href="https://wa.me/85262338647?text=Hi%2C%20I%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation." target="_blank" rel="noopener"><span class="ico">💬</span><span>WhatsApp</span></a>
+          <a class="vendor-btn" href="mailto:sales@bwgreenpower.com?subject=Solar%20canopy%20quote%20%E2%80%94%20Kam%20Sheung%20Rd&body=Hi%2C%0A%0AI%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation.%0A%0AThanks%2C%0AJay"><span class="ico">✉</span><span>Email</span></a>
+        </div>
+        <div class="vendor-tags">
+          <span class="tag">Typhoon specialist</span>
+          <span class="tag">Wind-load</span>
+          <span class="tag">BD submissions</span>
+          <span class="tag">2127 4915</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Inquiry script block -->
+    <div class="inquiry-block">
+      <h3>WHATSAPP INQUIRY SCRIPT — copy &amp; paste</h3>
+      <div class="inquiry-script" id="inquiryScript">Hi, I have a 700 sq ft 3F village house on Kam Sheung Road with an existing worn-down half-roof enclosure. I want to dismantle the old structure and replace it with a 2.5m AP-certified solar canopy for the CLP FiT scheme. Please arrange a free site inspection to provide a full quotation including demolition, BD filings, and installation.</div>
+      <div class="inquiry-actions">
+        <button class="inquiry-btn" onclick="copyInquiry()">COPY SCRIPT</button>
+        <a class="inquiry-btn ghost" href="https://wa.me/85260222108?text=Hi%2C%20I%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation." target="_blank" rel="noopener">SEND TO NEW STAR (TOP PICK)</a>
+        <a class="inquiry-btn ghost" href="https://wa.me/85281758176?text=Hi%2C%20I%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation." target="_blank" rel="noopener">SEND TO SOLARHK</a>
+        <a class="inquiry-btn ghost" href="https://wa.me/85262338647?text=Hi%2C%20I%20have%20a%20700%20sq%20ft%203F%20village%20house%20on%20Kam%20Sheung%20Road%20with%20an%20existing%20worn-down%20half-roof%20enclosure.%20I%20want%20to%20dismantle%20the%20old%20structure%20and%20replace%20it%20with%20a%202.5m%20AP-certified%20solar%20canopy%20for%20the%20CLP%20FiT%20scheme.%20Please%20arrange%20a%20free%20site%20inspection%20to%20provide%20a%20full%20quotation%20including%20demolition%2C%20BD%20filings%2C%20and%20installation." target="_blank" rel="noopener">SEND TO BW GREEN POWER</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- TIMELINE -->
 <section id="timeline">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-num">02</span>
+        <span class="sec-num">03</span>
         <span class="eyebrow">Schedule</span>
       </div>
       <div>
@@ -357,7 +480,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-num">03</span>
+        <span class="sec-num">04</span>
         <span class="eyebrow">The Work</span>
       </div>
       <div>
@@ -409,7 +532,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-num">04</span>
+        <span class="sec-num">05</span>
         <span class="eyebrow">Research</span>
       </div>
       <div>
@@ -427,7 +550,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-num">05</span>
+        <span class="sec-num">06</span>
         <span class="eyebrow">Between Us</span>
       </div>
       <div>
@@ -456,7 +579,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-num">06</span>
+        <span class="sec-num">07</span>
         <span class="eyebrow">Decision log</span>
       </div>
       <div>
@@ -475,7 +598,7 @@
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="sec-num">07</span>
+        <span class="sec-num">08</span>
         <span class="eyebrow">Still open</span>
       </div>
       <div>
@@ -685,7 +808,7 @@ const SEED_TASKS = [
 
 const SEED_RESEARCH = [
   { id: 'rental', title: 'Kam Sheung Rd rental market', notes: '700 sq ft 3F village house + rooftop + car space. Asking $15,000/mo. Comparables to check on 28Hse / Spacious: other 3F Kam Sheung Rd units, last 90 days. Aim: gross yield ~4.5–5% net of mortgage, mgmt, tax, vacancy. No commercial tenants — residential only.', tags: ['rent', 'KCR', 'village-house'] },
-  { id: 'solar-vendors', title: 'Solar vendor contacts', notes: '1) NEW STAR ENERGY (新煌能源) — TOP PICK · Shop D G/F Hoi Shuen Bldg, 96 Hop Yick Rd, Yuen Long · Tel/WA: 6022 2108 / 5545 8297 · info@nsenergy.com.hk · Hyper-local YL, handles demolition + AP filings + CLP FiT.\n\n2) SOLARHK (香港太陽能) · Rm B 7/F Dade Ind Bldg, Kwai Chung · Tel/WA: 8175 8176 · info@solarhk.org · Turnkey village-house packages ~$128k. Tier-1 panels (Trina/Longi), Huawei inverters.\n\n3) BW GREEN POWER (百威绿能) · Rm D-G 5/F Wah Lik Ind Centre, Tsuen Wan · Tel: 2127 4915 · WA: 6233 8647 · sales@bwgreenpower.com · Typhoon / wind-load specialists, BD submissions.\n\nInitial inquiry (WhatsApp): "Hi, I have a 700 sq ft 3F village house on Kam Sheung Road with an existing worn-down half-roof enclosure. I want to dismantle the old structure and replace it with a 2.5m AP-certified solar canopy for the CLP FiT scheme. Please arrange a free site inspection to provide a full quotation including demolition, BD filings, and installation."', tags: ['solar', 'vendors', 'Yuen-Long'] },
+  { id: 'solar-vendors', title: 'Solar vendor contacts', notes: '1) NEW STAR ENERGY (新煋能源) — TOP PICK · Shop D G/F Hoi Shuen Bldg, 96 Hop Yick Rd, Yuen Long · Tel/WA: 6022 2108 / 5545 8297 · info@nsenergy.com.hk · Hyper-local YL, handles demolition + AP filings + CLP FiT.\n\n2) SOLARHK (香港太陽能) · Rm B 7/F Dade Ind Bldg, Kwai Chung · Tel/WA: 8175 8176 · info@solarhk.org · Turnkey village-house packages ~$128k. Tier-1 panels (Trina/Longi), Huawei inverters.\n\n3) BW GREEN POWER (百威绿能) · Rm D-G 5/F Wah Lik Ind Centre, Tsuen Wan · Tel: 2127 4915 · WA: 6233 8647 · sales@bwgreenpower.com · Typhoon / wind-load specialists, BD submissions.\n\nInitial inquiry (WhatsApp): "Hi, I have a 700 sq ft 3F village house on Kam Sheung Road with an existing worn-down half-roof enclosure. I want to dismantle the old structure and replace it with a 2.5m AP-certified solar canopy for the CLP FiT scheme. Please arrange a free site inspection to provide a full quotation including demolition, BD filings, and installation."', tags: ['solar', 'vendors', 'Yuen-Long'] },
   { id: 'solar-econ', title: 'Solar economics', notes: 'FIRST QUOTE (Sep 4, 2026) — basic roof reno only: ~HK$80,000. Reno + full solar panel install: ~HK$160,000. Incremental cost of going solar = ~$80k over basic reno.\n\nEstimated monthly revenue @ $4.00/kWh CLP FiT: ~HK$2,500/mo (until 31 Dec 2033). System output ~625 kWh/mo.\n\nAfter FiT scheme ends (Dec 2033), revenue drops to market rate ~$1.2/kWh → ~HK$750/mo ongoing.\n\nReturns:\n- 7-yr FiT gross (2026–2033): $2,500 × 84 = $210k\n- Less install ($160k) = ~$50k net over 7 yrs\n- Payback period: $160k / $30k/yr ≈ 5.3 yrs (lands ~Mar 2032)\n- Post-2033: ~$9k/yr ongoing at market rate\n\nVerdict: still pencil-positive, but tighter than the initial $3,300–3,500/mo projection implied. The FiT scheme is the real value (~5 of the 7 remaining years net positive); after 2033 solar becomes low-yield passive income.\n\nDecisions to revisit:\n1. Reno-only floor ($80k) is the lower-risk baseline — needed regardless for a leasable unit.\n2. Reno + solar ($160k) delivers +$50k FiT net + $9k/yr ongoing vs reno-only.\n3. Are we OK with 5.3-yr payback instead of 3.5?', tags: ['solar', 'FiT', 'CLP', 'quote'] },
   { id: 'lease-clause', title: 'Critical landlord access clause', notes: 'Insert in Tenancy Agreement:\n\n"The Tenant agrees that the Landlord and authorized contractors reserve the right to access the rooftop via the external staircase upon 48 hours\' prior written notice to carry out scheduled rooftop canopy upgrade works."\n\nThis lets solar work proceed in parallel with tenancy — without it, you can\'t enter the rooftop during the lease.', tags: ['lease', 'access', 'critical'] },
   { id: 'tax', title: 'Property tax + stamp duty', notes: 'PROPERTY TAX: 15% on net rent (after 20% statutory deduction — standard better than gross). File annually via IRD.\n\nSTAMP DUTY on lease: 0.25% × annual rent + HK$5. For $15k/mo = 0.25% × $180k + $5 = $455. Pay within 30 days of lease execution.\n\nLEASE REGISTRATION at IRD if term > 1 year (mandatory; protect yourself in any future dispute).', tags: ['IRD', 'tax', 'stamp-duty'] },
@@ -1184,6 +1307,19 @@ function showToast(msg) {
   t.classList.add('show');
   clearTimeout(toastTimer);
   toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+function copyInquiry() {
+  const txt = document.getElementById('inquiryScript').textContent.trim();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(() => showToast('Inquiry script copied ✓'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = txt;
+    ta.style.position = 'fixed'; ta.style.left = '-9999px';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); showToast('Inquiry script copied ✓'); } catch (e) { showToast('Copy failed — select manually'); }
+    document.body.removeChild(ta);
+  }
 }
 function showXpPop() {
   const p = document.getElementById('xpPop');
