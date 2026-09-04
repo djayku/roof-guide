@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color"="#F4EFE6" />
+<title>Roof. Roadmap. — Owners Guide for the Rented Roof</title>
+<meta name="description" content="A private owners guide for the rental roof project. Tasks, research, decisions, shared notes and gamified progress tracking for Stevey & wife." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Brand tokens ===== */
+  :root{
+    --bone:#F4EFE6;
+    --ink:#1A1A1A;
+    --sage:#A8B5A0;
+    --terracotta:#C97B5A;
+    --stone:#C9C0B5;
+    --cream:#FBF7F0;
+    --rule:#E0D8CC;
+    --muted:#7A7368;
+    --gold:#C8A95B;       /* XP / streak */
+    --forest:#3F5E4E;     /* done */
+    --crimson:#A94C3A;    /* blocked / overdue */
+    --sky:#7393A8;        /* both owners */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{background:var(--bone);color:var(--ink);font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{padding:0;overflow-x:hidden;min-height:100vh}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .display{font-family:'Outfit',sans-serif;font-weight:800;letter-spacing:-0.03em;line-height:0.95}
+  .serif{font-family:'Fraunces',serif;font-weight:300;font-style:italic}
+  .mono{font-family:'JetBrains Mono',monospace;font-weight:400}
+  .eyebrow{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .lede{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(18px,1.8vw,22px);line-height:1.5;color:#2a2a2a;max-width:760px}
+
+  /* ===== Top bar ===== */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(244,239,230,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+  .topbar-inner{display:flex;justify-content:space-between;align-items:center;padding:18px 32px;max-width:1240px;margin:0 auto;gap:24px;flex-wrap:wrap}
+  .logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.04em;line-height:1;color:var(--ink)}
+  .logo .period{color:var(--terracotta)}
+  .nav{display:flex;align-items:center;gap:24px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);font-weight:500;flex-wrap:wrap}
+  .nav a{position:relative;padding-bottom:4px}
+  .nav a:hover{color:var(--terracotta)}
+  .xp-chip{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--ink);font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .xp-chip .num{font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0}
+
+  /* ===== Hero ===== */
+  .hero{padding:80px 0 56px;position:relative}
+  .hero h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(56px,9vw,140px);letter-spacing:-0.05em;line-height:0.88;color:var(--ink);margin-bottom:24px}
+  .hero h1 .period{color:var(--terracotta)}
+  .hero-tag{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:clamp(20px,2.2vw,30px);color:var(--ink);max-width:680px;margin-bottom:32px;line-height:1.35}
+  .hero-meta{display:flex;gap:32px;flex-wrap:wrap;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:32px}
+  .hero-meta strong{color:var(--ink);font-weight:600}
+
+  /* ===== Overall progress ===== */
+  .progress-card{background:var(--ink);color:var(--bone);padding:32px;margin-top:24px;position:relative;overflow:hidden}
+  .progress-card .label{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(244,239,230,0.55);margin-bottom:8px}
+  .progress-card .bar-wrap{height:6px;background:rgba(244,239,230,0.15);border-radius:3px;overflow:hidden;margin-bottom:12px}
+  .progress-card .bar{height:100%;background:var(--terracotta);width:0%;transition:width .4s ease}
+  .progress-card .pct{font-family:'Outfit',sans-serif;font-weight:800;font-size:48px;letter-spacing:-0.03em;line-height:1;color:var(--bone)}
+  .progress-card .pct .sign{font-size:24px;color:var(--terracotta);margin-left:4px}
+  .progress-card .stats{display:flex;gap:32px;margin-top:24px;flex-wrap:wrap}
+  .progress-card .stat{font-size:12px;letter-spacing:0.04em}
+  .progress-card .stat .v{font-family:'Outfit',sans-serif;font-weight:700;font-size:22px;color:var(--bone);display:block}
+  .progress-card .stat .l{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,239,230,0.55);margin-top:2px}
+
+  /* ===== Sections ===== */
+  section{padding:80px 0}
+  section.tight{padding:56px 0}
+  .sec-head{display:grid;grid-template-columns:200px 1fr;gap:64px;margin-bottom:48px;align-items:end}
+  .sec-head .sec-num{font-family:'Outfit',sans-serif;font-weight:800;font-size:14px;color:var(--terracotta);letter-spacing:0.18em;display:block;margin-bottom:8px}
+  h2.section-title{font-family:'Outfit',sans-serif;font-weight:800;font-size:clamp(32px,4.5vw,56px);letter-spacing:-0.03em;line-height:1;color:var(--ink)}
+
+  /* ===== Decisions dashboard ===== */
+  .decisions{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:64px}
+  .decision{background:var(--cream);border:1px solid var(--rule);padding:32px;position:relative;cursor:pointer;transition:border-color .2s ease, transform .2s ease}
+  .decision:hover{border-color:var(--ink)}
+  .decision.selected{border-color:var(--terracotta);border-width:2px;padding:31px}
+  .decision .label{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:16px}
+  .decision h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;letter-spacing:-0.02em;line-height:1.1;color:var(--ink);margin-bottom:12px}
+  .decision .desc{font-size:14px;line-height:1.5;color:#3a3a3a;margin-bottom:20px}
+  .decision .verdict{font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:var(--muted)}
+  .decision .verdict strong{color:var(--ink);font-weight:600;font-style:normal}
+  .decision-toggle{position:absolute;top:24px;right:24px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--rule);background:var(--bone);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--rule)}
+  .decision.selected .decision-toggle{background:var(--terracotta);border-color:var(--terracotta);color:var(--cream)}
+
+  /* ===== Timeline ===== */
+  .timeline{position:relative;padding:24px 0}
+  .timeline::before{content:'';position:absolute;left:120px;top:0;bottom:0;width:2px;background:var(--rule)}
+  .tl-phase{display:grid;grid-template-columns:100px 1fr;gap:40px;padding:24px 0;position:relative}
+  .tl-phase::before{content:'';position:absolute;left:115px;top:32px;width:12px;height:12px;border-radius:50%;background:var(--bone);border:2px solid var(--rule);z-index:2}
+  .tl-phase.done::before{background:var(--forest);border-color:var(--forest)}
+  .tl-phase.active::before{background:var(--terracotta);border-color:var(--terracotta);box-shadow:0 0 0 4px rgba(201,123,90,0.18)}
+  .tl-phase .when{font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;color:var(--ink);letter-spacing:0.02em}
+  .tl-phase .when .num{font-size:24px;display:block;font-weight:800;color:var(--terracotta);letter-spacing:-0.02em;line-height:1;margin-bottom:6px}
+  .tl-phase .what h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.01em;color:var(--ink);margin-bottom:8px}
+  .tl-phase .what p{font-size:14px;color:var(--muted);margin-bottom:12px}
+  .tl-phase .what .meta{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+  .tl-phase .bar-wrap{height:4px;background:var(--rule);border-radius:2px;overflow:hidden;margin-top:12px;max-width:400px}
+  .tl-phase .bar{height:100%;background:var(--forest)}
+
+  /* ===== Tasks (gamification core) ===== */
+  .tasks-controls{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:24px}
+  .filter-chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--rule);background:var(--bone);font-weight:500;transition:all .15s ease}
+  .chip:hover{border-color:var(--ink)}
+  .chip.active{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  .add-task-btn{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;background:var(--terracotta);color:var(--cream);padding:10px 18px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+  .add-task-btn:hover{background:var(--ink)}
+
+  .phase-group{margin-bottom:40px}
+  .phase-group-head{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+  .phase-group-head h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.01em;color:var(--ink)}
+  .phase-group-head .count{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+  .phase-group-head .progress-mini{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)}
+
+  .task{display:grid;grid-template-columns:28px 1fr auto auto auto auto;gap:16px;align-items:center;padding:18px 20px;border-bottom:1px solid var(--rule);transition:background .15s ease}
+  .task:hover{background:var(--cream)}
+  .task.done{opacity:0.55}
+  .task.done .task-title{text-decoration:line-through;color:var(--muted)}
+  .task-check{width:22px;height:22px;border:1.5px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bone);transition:all .15s ease}
+  .task-check:hover{border-color:var(--ink)}
+  .task.done .task-check{background:var(--forest);border-color:var(--forest);color:var(--bone)}
+  .task-title{font-size:15px;color:var(--ink);line-height:1.4;font-weight:500}
+  .task.urgent .task-title::before{content:'● ';color:var(--terracotta);font-size:11px;vertical-align:middle;margin-right:4px}
+  .task.overdue .task-title::before{content:'● ';color:var(--crimson);font-size:11px;vertical-align:middle;margin-right:4px}
+  .task-meta{display:flex;gap:8px;align-items:center;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .owner-chip{display:inline-flex;align-items:center;gap:4px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;padding:4px 8px;font-weight:600}
+  .owner-chip.stevey{background:var(--ink);color:var(--bone)}
+  .owner-chip.wife{background:var(--sage);color:var(--ink)}
+  .owner-chip.both{background:var(--sky);color:var(--cream)}
+  .phase-chip{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:4px 8px;border:1px solid var(--rule)}
+  .due-chip{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:0;min-width:80px;text-align:right}
+  .task.overdue .due-chip{color:var(--crimson);font-weight:600}
+  .task.urgent .due-chip{color:var(--terracotta);font-weight:600}
+  .task-del{font-size:14px;color:var(--rule);width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .15s ease}
+  .task-del:hover{background:var(--crimson);color:var(--bone)}
+
+  .xp-pop{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Outfit',sans-serif;font-weight:800;font-size:64px;color:var(--gold);pointer-events:none;z-index:200;opacity:0;transition:opacity .2s ease, transform .4s ease}
+  .xp-pop.show{opacity:1;transform:translate(-50%,-80%)}
+
+  /* ===== Streak & badges ===== */
+  .streak-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-bottom:48px}
+  .streak-card{background:var(--cream);border:1px solid var(--rule);padding:24px;text-align:center}
+  .streak-card .num{font-family:'Outfit',sans-serif;font-weight:800;font-size:48px;color:var(--ink);letter-spacing:-0.03em;line-height:1}
+  .streak-card .num.streak{color:var(--terracotta)}
+  .streak-card .lbl{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:500}
+  .streak-card .sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink);margin-top:4px}
+
+  .badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--rule);padding:8px 14px;font-size:11px;letter-spacing:0.04em;color:var(--muted)}
+  .badge.earned{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  .badge .icon{width:20px;height:20px;border-radius:50%;background:var(--rule);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ink);font-family:'Outfit'}
+  .badge.earned .icon{background:var(--gold);color:var(--ink)}
+
+  /* ===== Research hub ===== */
+  .research-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+  .research-card{background:var(--bone);border:1px solid var(--rule);padding:24px;position:relative}
+  .research-card h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.01em;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .research-card h3 .num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--terracotta);font-weight:500}
+  .research-card .last-updated{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);position:absolute;top:24px;right:24px}
+  .research-card .notes{font-size:14px;line-height:1.6;color:#2a2a2a;margin-bottom:16px;min-height:80px}
+  .research-card textarea{width:100%;border:1px solid var(--rule);background:var(--bone);padding:12px;font-family:'Inter',sans-serif;font-size:13px;line-height:1.5;color:var(--ink);resize:vertical;min-height:80px;transition:border-color .15s ease}
+  .research-card textarea:focus{outline:none;border-color:var(--ink)}
+  .research-card .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+  .tag{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;padding:3px 8px;background:var(--rule);color:var(--ink);font-weight:500}
+
+  /* ===== Shared notes ===== */
+  .shared-notes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .note-col{background:var(--cream);border:1px solid var(--rule);padding:24px}
+  .note-col.stevey{border-top:3px solid var(--ink)}
+  .note-col.wife{border-top:3px solid var(--sage)}
+  .note-col h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .note-col .who{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .note-col textarea{width:100%;border:none;background:transparent;padding:0;font-family:'Inter',sans-serif;font-size:13px;line-height:1.7;color:var(--ink);resize:vertical;min-height:300px}
+  .note-col textarea:focus{outline:none}
+  .note-col .hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);margin-top:8px}
+
+  /* ===== Decision log ===== */
+  .decisions-log{display:flex;flex-direction:column;gap:16px}
+  .decision-entry{background:var(--bone);border:1px solid var(--rule);border-left:3px solid var(--forest);padding:20px 24px}
+  .decision-entry .when{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:6px}
+  .decision-entry h4{font-family:'Outfit',sans-serif;font-weight:700;font-size:16px;color:var(--ink);margin-bottom:6px}
+  .decision-entry p{font-size:13px;line-height:1.6;color:#2a2a2a}
+  .decision-entry .who{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:500}
+
+  /* ===== Open questions ===== */
+  .questions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .question{background:var(--bone);border:1px solid var(--rule);padding:20px;display:flex;align-items:start;gap:16px}
+  .question .q{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink);line-height:1.5;flex:1}
+  .question .res{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;background:var(--cream);padding:6px 10px;color:var(--muted);font-weight:500;border:1px solid var(--rule);flex-shrink:0;cursor:pointer}
+  .question.resolved{opacity:0.45;border-color:var(--rule)}
+  .question.resolved .q{text-decoration:line-through}
+
+  /* ===== Toast ===== */
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--ink);color:var(--bone);padding:14px 24px;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:500;z-index:200;transition:transform .3s ease;box-shadow:0 8px 32px rgba(0,0,0,0.16)}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* ===== Modal (new task) ===== */
+  .modal-bg{position:fixed;inset:0;background:rgba(26,26,26,0.55);z-index:300;display:none;align-items:center;justify-content:center;padding:24px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--bone);max-width:520px;width:100%;padding:32px;max-height:90vh;overflow-y:auto}
+  .modal h3{font-family:'Outfit',sans-serif;font-weight:800;font-size:24px;color:var(--ink);margin-bottom:24px;letter-spacing:-0.02em}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:500}
+  .field input,.field select,.field textarea{width:100%;border:1px solid var(--rule);background:var(--bone);padding:12px;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--ink)}
+  .field textarea{resize:vertical;min-height:60px}
+  .modal-actions{display:flex;gap:12px;justify-content:flex-end;margin-top:24px}
+  .btn{padding:12px 20px;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;border:1px solid var(--rule);transition:all .15s ease}
+  .btn:hover{border-color:var(--ink)}
+  .btn.primary{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+  .btn.primary:hover{background:var(--terracotta);border-color:var(--terracotta)}
+  .btn.danger{color:var(--crimson);border-color:var(--rule)}
+  .btn.danger:hover{background:var(--crimson);color:var(--bone);border-color:var(--crimson)}
+
+  /* ===== Responsive ===== */
+  @media (max-width:960px){
+    .topbar-inner{padding:14px 20px}
+    .wrap{padding:0 20px}
+    .hero{padding:48px 0 32px}
+    .sec-head{grid-template-columns:1fr;gap:16px;margin-bottom:32px}
+    .decisions{grid-template-columns:1fr}
+    .research-grid{grid-template-columns:1fr}
+    .shared-notes{grid-template-columns:1fr}
+    .questions-grid{grid-template-columns:1fr}
+    .streak-row{grid-template-columns:1fr}
+    .timeline::before{left:60px}
+    .tl-phase{grid-template-columns:50px 1fr;gap:24px}
+    .tl-phase::before{left:55px}
+    .task{grid-template-columns:28px 1fr;gap:12px;padding:14px 16px}
+    .task-meta,.owner-chip,.phase-chip,.due-chip,.task-del{grid-column:2}
+    .tasks-controls{flex-direction:column;align-items:stretch}
+    section{padding:48px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="logo">Roof<span class="period">.</span></a>
+    <nav class="nav">
+      <a href="#decisions">Decisions</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#tasks">Tasks</a>
+      <a href="#research">Research</a>
+      <a href="#notes">Notes</a>
+      <a href="#log">Log</a>
+      <a href="#questions">Open</a>
+    </nav>
+    <div class="xp-chip"><span>XP</span><span class="num" id="xpNum">0</span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <h1>Roof<span class="period">.</span><br>Roadmap<span class="period">.</span></h1>
+    <p class="hero-tag">A private owners guide for getting the roof rental-ready. Tasks, research, shared notes, and a way to see who's doing what — without the WhatsApp chaos.</p>
+    <div class="hero-meta">
+      <div><strong id="metaDone">0</strong> of <strong id="metaTotal">0</strong> tasks done</div>
+      <div><strong id="metaStreak">0</strong> day streak</div>
+      <div>Started <strong>Sep 2026</strong></div>
+    </div>
+
+    <!-- OVERALL PROGRESS -->
+    <div class="progress-card">
+      <div class="label">Overall project progress</div>
+      <div class="pct"><span id="pctNum">0</span><span class="sign">%</span></div>
+      <div class="bar-wrap"><div class="bar" id="progBar"></div></div>
+      <div class="stats">
+        <div class="stat"><span class="v" id="statDone">0</span><span class="l">Tasks done</span></div>
+        <div class="stat"><span class="v" id="statOpen">0</span><span class="l">Open</span></div>
+        <div class="stat"><span class="v" id="statOverdue">0</span><span class="l">Overdue</span></div>
+        <div class="stat"><span class="v" id="statThisWeek">0</span><span class="l">Due this week</span></div>
+        <div class="stat"><span class="v" id="statXp">0</span><span class="l">Total XP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECISIONS -->
+<section class="tight" id="decisions">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">01</span>
+        <span class="eyebrow">Direction</span>
+      </div>
+      <div>
+        <h2 class="section-title">What we're doing<br>with the roof.</h2>
+      </div>
+    </div>
+
+    <div class="decisions" id="decisionsGrid">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">02</span>
+        <span class="eyebrow">Schedule</span>
+      </div>
+      <div>
+        <h2 class="section-title">Six phases to<br>rent-ready.</h2>
+        <p style="font-size:14px;color:var(--muted);margin-top:16px;max-width:560px">From deciding direction to first tenant move-in. Tap any phase to expand tasks. Dates are target ranges — adjust in your notes.</p>
+      </div>
+    </div>
+
+    <div class="timeline" id="timelineList">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- TASKS (GAMIFICATION CORE) -->
+<section id="tasks">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">03</span>
+        <span class="eyebrow">The Work</span>
+      </div>
+      <div>
+        <h2 class="section-title">Tasks. Owner<br>tagged. Scored.</h2>
+      </div>
+    </div>
+
+    <!-- Streak + XP summary -->
+    <div class="streak-row">
+      <div class="streak-card">
+        <div class="num streak" id="streakNum">0</div>
+        <div class="lbl">Day streak</div>
+        <div class="sub" id="streakSub">Complete a task today to start</div>
+      </div>
+      <div class="streak-card">
+        <div class="num" id="xpNum2">0</div>
+        <div class="lbl">Total XP earned</div>
+        <div class="sub" id="xpSub">10 pts per task · 25 pts per phase</div>
+      </div>
+      <div class="streak-card">
+        <div class="num" id="badgeNum">0</div>
+        <div class="lbl">Badges unlocked</div>
+        <div class="sub" id="badgeSub">Keep going</div>
+      </div>
+    </div>
+
+    <div class="badges" id="badgesRow"></div>
+
+    <!-- Filters + add -->
+    <div class="tasks-controls" style="margin-top:48px">
+      <div class="filter-chips" id="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="open">Open</button>
+        <button class="chip" data-filter="done">Done</button>
+        <button class="chip" data-filter="stevey">Stevey</button>
+        <button class="chip" data-filter="wife">Wife</button>
+        <button class="chip" data-filter="both">Both</button>
+        <button class="chip" data-filter="overdue">Overdue</button>
+      </div>
+      <button class="add-task-btn" id="addTaskBtn">+ New task</button>
+    </div>
+
+    <div id="tasksByPhase"></div>
+  </div>
+</section>
+
+<!-- RESEARCH HUB -->
+<section id="research" style="background:var(--cream);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">04</span>
+        <span class="eyebrow">Research</span>
+      </div>
+      <div>
+        <h2 class="section-title">What we've learned<br>and what's still open.</h2>
+        <p style="font-size:14px;color:var(--muted);margin-top:16px;max-width:560px">Editable notes that persist in your browser. Treat this like a shared research doc — type to update.</p>
+      </div>
+    </div>
+
+    <div class="research-grid" id="researchGrid"></div>
+  </div>
+</section>
+
+<!-- SHARED NOTES -->
+<section id="notes">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">05</span>
+        <span class="eyebrow">Between Us</span>
+      </div>
+      <div>
+        <h2 class="section-title">Stevey's corner.<br>Wife's corner.</h2>
+        <p style="font-size:14px;color:var(--muted);margin-top:16px;max-width:560px">Two textareas that auto-save. Use it for the in-progress thoughts that don't have a task yet. No more "did you tell me about the contractor?"</p>
+      </div>
+    </div>
+
+    <div class="shared-notes">
+      <div class="note-col stevey">
+        <h3>Stevey <span class="who">· owner</span></h3>
+        <textarea id="noteStevey" placeholder="Loose thoughts, half-formed plans, questions to follow up on…&#10;&#10;e.g.&#10;- Need to ask mom what she remembers about the roof leak from 2019&#10;- Compare Centaline vs Midland agent fees"></textarea>
+        <div class="hint" id="noteSteveyHint">Auto-saves on change</div>
+      </div>
+      <div class="note-col wife">
+        <h3>Wife <span class="who">· owner</span></h3>
+        <textarea id="noteWife" placeholder="Things I want us to remember, things I want done before we tell the agent, my own concerns…"></textarea>
+        <div class="hint" id="noteWifeHint">Auto-saves on change</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DECISION LOG -->
+<section id="log" style="background:var(--cream);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">06</span>
+        <span class="eyebrow">Decision log</span>
+      </div>
+      <div>
+        <h2 class="section-title">What we decided,<br>when, and why.</h2>
+        <p style="font-size:14px;color:var(--muted);margin-top:16px;max-width:560px">Append-only history. Future-you will want to know why we picked what we picked.</p>
+      </div>
+    </div>
+
+    <div class="decisions-log" id="decisionsLog"></div>
+    <button class="add-task-btn" style="margin-top:24px" id="addDecisionBtn">+ Log a decision</button>
+  </div>
+</section>
+
+<!-- OPEN QUESTIONS -->
+<section id="questions">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="sec-num">07</span>
+        <span class="eyebrow">Still open</span>
+      </div>
+      <div>
+        <h2 class="section-title">Questions without<br>an answer yet.</h2>
+        <p style="font-size:14px;color:var(--muted);margin-top:16px;max-width:560px">Click "resolved" when you've sorted it. Don't let them pile up — they get stale.</p>
+      </div>
+    </div>
+
+    <div class="questions-grid" id="questionsGrid"></div>
+    <button class="add-task-btn" style="margin-top:24px" id="addQuestionBtn">+ Add question</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="padding:56px 0 32px;border-top:1px solid var(--rule)">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <div>
+        <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em;color:var(--ink)">Roof<span style="color:var(--terracotta)">.</span> Roadmap<span style="color:var(--terracotta)">.</span></div>
+        <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:4px">Private owners guide · v1.0</div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)" id="lastSaved">Not saved yet</div>
+    </div>
+  </div>
+</footer>
+
+<!-- XP pop -->
+<div class="xp-pop" id="xpPop">+10 XP</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">Saved</div>
+
+<!-- Add task modal -->
+<div class="modal-bg" id="taskModal">
+  <div class="modal">
+    <h3>New task</h3>
+    <div class="field">
+      <label>Title</label>
+      <input type="text" id="taskTitle" placeholder="e.g. Email CLP about grid capacity for solar" />
+    </div>
+    <div class="field">
+      <label>Phase</label>
+      <select id="taskPhase">
+        <option value="0">Direction</option>
+        <option value="1">Research</option>
+        <option value="2">Decisions</option>
+        <option value="3">Prep work</option>
+        <option value="4">Permits & build</option>
+        <option value="5">List & let</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Owner</label>
+      <select id="taskOwner">
+        <option value="stevey">Stevey</option>
+        <option value="wife">Wife</option>
+        <option value="both">Both</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Due date</label>
+      <input type="date" id="taskDue" />
+    </div>
+    <div class="field">
+      <label>Notes (optional)</label>
+      <textarea id="taskNotes" placeholder="Context, links, what 'done' looks like…"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="cancelTask">Cancel</button>
+      <button class="btn primary" id="saveTask">Add task</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add decision modal -->
+<div class="modal-bg" id="decisionModal">
+  <div class="modal">
+    <h3>Log a decision</h3>
+    <div class="field">
+      <label>What we decided</label>
+      <input type="text" id="decisionTitle" placeholder="e.g. We're going ahead with renting the flat out" />
+    </div>
+    <div class="field">
+      <label>Why</label>
+      <textarea id="decisionWhy" placeholder="The reasoning, what it rules out, anything to revisit later…"></textarea>
+    </div>
+    <div class="field">
+      <label>Made by</label>
+      <select id="decisionBy">
+        <option value="Both">Both</option>
+        <option value="Stevey">Stevey</option>
+        <option value="Wife">Wife</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="cancelDecision">Cancel</button>
+      <button class="btn primary" id="saveDecision">Log it</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add question modal -->
+<div class="modal-bg" id="questionModal">
+  <div class="modal">
+    <h3>Add open question</h3>
+    <div class="field">
+      <label>The question</label>
+      <textarea id="questionText" placeholder="e.g. Does the roof's load-bearing capacity support solar panels?"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="cancelQuestion">Cancel</button>
+      <button class="btn primary" id="saveQuestion">Add</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===========================================================
+   Roof. Roadmap. — single-file app
+   =========================================================== */
+
+/* ----- Static seed data ----- */
+
+const PHASES = [
+  { id: 0, num: '01', when: 'Sep–Oct 2026', title: 'Direction', body: 'Lock in what we\'re doing — rent out / solar / renovate. Align with wife. Set the budget envelope.', meta: '2-4 weeks' },
+  { id: 1, num: '02', when: 'Oct–Nov 2026', title: 'Research', body: 'Rental yield in our district. Solar feasibility for the roof. Contractor shortlist. Tax + legal basics.', meta: '4-6 weeks' },
+  { id: 2, num: '03', when: 'Nov–Dec 2026', title: 'Decisions', body: 'Pick the rental model (full / serviced / co-living). Decide solar yes/no. Sign off on renovation scope.', meta: '2-3 weeks' },
+  { id: 3, num: '04', when: 'Dec 2026–Jan 2027', title: 'Prep work', body: 'Roof inspection. Quote package. Mortgage/insurance review. Furnishing plan if applicable.', meta: '4-6 weeks' },
+  { id: 4, num: '05', when: 'Jan–Mar 2027', title: 'Permits & build', body: 'Buildings Department submissions if structural. Solar installation. Light renovation. Final sign-off.', meta: '6-10 weeks' },
+  { id: 5, num: '06', when: 'Mar–Apr 2027', title: 'List & let', body: 'Pick agent. Photography. Listing. Showings. Sign lease. Hand over.', meta: '3-4 weeks' }
+];
+
+const DECISIONS = [
+  {
+    id: 'rent',
+    label: 'Primary path',
+    title: 'Rent out the flat',
+    desc: 'Long-term tenant. Furnished or unfurnished. Yield is the deciding number, not the trend.',
+    verdict: 'Currently leaning YES.',
+    selected: true
+  },
+  {
+    id: 'solar',
+    label: 'Side bet',
+    title: 'Solar panels on the roof',
+    desc: 'Feasibility depends on roof orientation, age, structural capacity, and CLP grid buy-back tariff. Will know after phase 2.',
+    verdict: 'Under research.',
+    selected: false
+  },
+  {
+    id: 'reno',
+    label: 'Optional',
+    title: 'Light roof renovation',
+    desc: 'Waterproofing, drainage, accessible for tenant. Light only — no full rebuild unless the inspector says otherwise.',
+    verdict: 'Will pair with solar install if we go that way.',
+    selected: true
+  }
+];
+
+const BADGES = [
+  { id: 'first-task', name: 'First Step', icon: '1', condition: s => s.doneCount >= 1 },
+  { id: 'five-tasks', name: '5 Done', icon: '5', condition: s => s.doneCount >= 5 },
+  { id: 'ten-tasks', name: '10 Done', icon: '10', condition: s => s.doneCount >= 10 },
+  { id: 'phase-0', name: 'Direction Locked', icon: '✓', condition: s => s.phaseDone[0] === s.phaseTotal[0] && s.phaseTotal[0] > 0 },
+  { id: 'phase-1', name: 'Research Done', icon: '✓', condition: s => s.phaseDone[1] === s.phaseTotal[1] && s.phaseTotal[1] > 0 },
+  { id: 'streak-3', name: '3-Day Streak', icon: '🔥', condition: s => s.streak >= 3 },
+  { id: 'streak-7', name: 'Week Streak', icon: '🔥', condition: s => s.streak >= 7 },
+  { id: 'all-research', name: 'Research Complete', icon: '★', condition: s => s.phaseDone[1] === s.phaseTotal[1] && s.phaseTotal[1] > 0 },
+  { id: 'wife-tasks', name: 'Wife Collaboration', icon: '♥', condition: s => s.doneBy.wife >= 3 },
+  { id: 'overdue-zero', name: 'Caught Up', icon: '◎', condition: s => s.overdue === 0 && s.doneCount >= 1 },
+  { id: 'xp-100', name: '100 XP', icon: '◆', condition: s => s.xp >= 100 },
+  { id: 'xp-500', name: '500 XP', icon: '◆', condition: s => s.xp >= 500 }
+];
+
+const SEED_TASKS = [
+  /* Phase 0 — Direction */
+  { phase: 0, owner: 'both', title: 'Sit down together and lock the primary goal (rent vs hold vs sell)', due: '2026-09-10', notes: 'Anchor conversation. Come with numbers, not feelings.' },
+  { phase: 0, owner: 'stevey', title: 'Define the yield number that makes this worthwhile', due: '2026-09-12', notes: 'HK district comps. Net yield after mortgage, mgmt fee, tax.' },
+  { phase: 0, owner: 'wife', title: 'List non-negotiables (no short-let, no student, etc.)', due: '2026-09-14', notes: '' },
+  { phase: 0, owner: 'both', title: 'Set the budget envelope for solar / renovation', due: '2026-09-20', notes: 'Cap that we\'d both be comfortable losing if the unit sits empty.' },
+
+  /* Phase 1 — Research */
+  { phase: 1, owner: 'stevey', title: 'Pull 6 comparable rentals in our district on Spacious / Midland / Centaline', due: '2026-10-05', notes: '' },
+  { phase: 1, owner: 'wife', title: 'Ask friends who rent out for agent recommendation + fee structure', due: '2026-10-10', notes: 'Two birds, one conversation.' },
+  { phase: 1, owner: 'stevey', title: 'Solar feasibility — get a quote from 2 installers', due: '2026-10-25', notes: 'SolarHK, Sundwealth, or local contractor.' },
+  { phase: 1, owner: 'stevey', title: 'Check roof orientation, age, and last waterproofing date', due: '2026-10-15', notes: 'Ask building management if there\'s a record.' },
+  { phase: 1, owner: 'wife', title: 'Research landlord insurance options', due: '2026-10-30', notes: 'AXA, MSIG, AIG.' },
+  { phase: 1, owner: 'both', title: 'Talk to a tax advisor about rental income + depreciation', due: '2026-11-05', notes: '' },
+
+  /* Phase 2 — Decisions */
+  { phase: 2, owner: 'both', title: 'Decide: full unit vs room-by-room vs serviced', due: '2026-11-15', notes: 'After yield numbers are in.' },
+  { phase: 2, owner: 'both', title: 'Solar: go or no-go?', due: '2026-11-20', notes: 'Based on quote vs CLP FiT.' },
+  { phase: 2, owner: 'stevey', title: 'Pick furnishing package (full / partial / none)', due: '2026-11-25', notes: '' },
+  { phase: 2, owner: 'both', title: 'Sign off on renovation scope and budget', due: '2026-12-01', notes: '' },
+
+  /* Phase 3 — Prep */
+  { phase: 3, owner: 'stevey', title: 'Get formal roof inspection done', due: '2026-12-15', notes: '' },
+  { phase: 3, owner: 'stevey', title: 'Request 3 contractor quotes for renovation', due: '2026-12-20', notes: '' },
+  { phase: 3, owner: 'wife', title: 'Sort what stays / goes from the flat', due: '2026-12-22', notes: 'If fully furnished.' },
+  { phase: 3, owner: 'stevey', title: 'Review mortgage structure (any rate reset coming?)', due: '2027-01-05', notes: '' },
+  { phase: 3, owner: 'stevey', title: 'Insurance — get landlord policy in place', due: '2027-01-10', notes: '' },
+
+  /* Phase 4 — Permits & build */
+  { phase: 4, owner: 'stevey', title: 'File any BD submissions required for solar / structural', due: '2027-01-20', notes: 'AP/RSC if applicable.' },
+  { phase: 4, owner: 'stevey', title: 'Schedule solar install', due: '2027-02-01', notes: '' },
+  { phase: 4, owner: 'stevey', title: 'Schedule renovation work', due: '2027-02-10', notes: '6-10 week lead time.' },
+  { phase: 4, owner: 'both', title: 'Final walk-through and snag list', due: '2027-03-01', notes: 'Before listing.' },
+
+  /* Phase 5 — List & let */
+  { phase: 5, owner: 'both', title: 'Sign agency agreement (or self-list)', due: '2027-03-10', notes: '' },
+  { phase: 5, owner: 'wife', title: 'Coordinate professional photography + floor plan', due: '2027-03-12', notes: '' },
+  { phase: 5, owner: 'stevey', title: 'Write listing copy', due: '2027-03-13', notes: '' },
+  { phase: 5, owner: 'both', title: 'Showings + tenant shortlist', due: '2027-03-20', notes: 'Two-week buffer.' },
+  { phase: 5, owner: 'both', title: 'Sign lease and handover', due: '2027-04-01', notes: '🎉' }
+];
+
+const SEED_RESEARCH = [
+  { id: 'rental', title: 'HK rental market — our district', notes: 'TODO: median rent psf for our size (2-bed / 3-bed). Spacious + Midland portals. Look at last 90 days, gross yield calc = (annual rent / property value) × 100. Net yield = gross minus mgmt fee, mortgage interest, insurance, vacancy allowance (5–8%). Target net 3%+ for it to be worth doing.', tags: ['rent', 'yield', 'district'] },
+  { id: 'solar', title: 'Solar feasibility', notes: 'CLP FiT (Feed-in Tariff) rate as of 2026 needs checking — current rates ~HK$2.50–4.00/kWh for systems ≤10kW. Payback period depends on roof orientation (south-facing ideal in HK, ~22° tilt), shading, panel efficiency. Building Department may require AP submission if structural changes. Talk to SolarHK and one local contractor.', tags: ['solar', 'CLP', 'BD'] },
+  { id: 'legal', title: 'Legal & tax', notes: 'Property tax (15% on net rent after 20% statutory deduction, OR 15% on gross with no deduction — usually net is better). Stamp duty on lease: 0.25% of annual rent + HK$5. Need to register lease at IRD if term > 1 year. Landlord obligations: safety (gas if applicable), structural, no harassment. Consider a written tenancy agreement template.', tags: ['tax', 'IRD', 'lease'] },
+  { id: 'finance', title: 'Finance & insurance', notes: 'Review if mortgage allows renting out (most do, some restrict). Notify bank. Insurance: standard homeowner doesn\'t cover tenant damage — need landlord policy. Quoted: AXA Home Landlord, MSIG, AIG. ~HK$1,500–3,000/year typical for a unit this size.', tags: ['mortgage', 'insurance'] },
+  { id: 'agents', title: 'Agent shortlist', notes: 'Compare: Centaline (largest), Midland (Mid-Levels focused), OKAY.com, Spacious (boutique). Typical fee: half-month rent for 1-year tenancy, full-month for 2-year. Ask about photography, floor plan, virtual tour included. Get references from someone who\'s rented recently.', tags: ['agent', 'Centaline', 'Midland'] },
+  { id: 'reno', title: 'Renovation scope', notes: 'Light only — waterproofing inspection, repaint, fix any leaks, replace damaged tiles, upgrade drainage if needed. Budget cap TBD with wife. Get 3 quotes. Ask for itemised breakdown (materials vs labour). Typical HK reno contractor lead time 6–10 weeks. Check if any BD approval needed.', tags: ['renovation', 'contractor'] }
+];
+
+const SEED_QUESTIONS = [
+  'Does the current mortgage allow renting out without penalty?',
+  'What\'s the realistic vacancy rate for our district / size?',
+  'How old is the roof and when was it last waterproofed?',
+  'Will CLP buy back solar at a rate that justifies the install?',
+  'Do we want to manage ourselves or pay an agent?',
+  'What\'s our hard stop date — when does it become not worth doing?'
+];
+
+/* ----- App state (persisted) ----- */
+
+const STORE_KEY = '***';
+const defaultState = () => ({
+  tasks: SEED_TASKS.map(t => ({ ...t, id: cryptoId(), done: false, doneAt: null, xp: false })),
+  research: SEED_RESEARCH.map(r => ({ ...r })),
+  notes: { stevey: '', wife: '' },
+  decisions: [
+    { id: cryptoId(), when: '2026-09-04', title: 'Started the Roof Roadmap', why: 'Needed a shared, structured way to plan and execute.', who: 'Both' }
+  ],
+  questions: SEED_QUESTIONS.map(q => ({ id: cryptoId(), text: q, resolved: false })),
+  xp: 0,
+  streak: 0,
+  lastTaskDate: null,
+  decisions_state: { rent: true, solar: false, reno: true }
+});
+
+function cryptoId() {
+  return 'id_' + Math.random().toString(36).slice(2, 10);
+}
+
+let state = loadState();
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return defaultState();
+    const parsed = JSON.parse(raw);
+    // Merge to handle missing fields after code updates
+    const d = defaultState();
+    return { ...d, ...parsed, notes: { ...d.notes, ...(parsed.notes || {}) }, decisions_state: { ...d.decisions_state, ...(parsed.decisions_state || {}) } };
+  } catch (e) {
+    return defaultState();
+  }
+}
+function saveState() {
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(state));
+    document.getElementById('lastSaved').textContent = 'Saved ' + new Date().toLocaleTimeString('en-HK', { hour: '2-digit', minute: '2-digit' });
+  } catch (e) {}
+}
+
+/* ----- Rendering ----- */
+
+function renderDecisions() {
+  const grid = document.getElementById('decisionsGrid');
+  grid.innerHTML = DECISIONS.map(d => `
+    <div class="decision ${d.selected ? 'selected' : ''}" data-id="${d.id}">
+      <div class="decision-toggle">${d.selected ? '✓' : ''}</div>
+      <div class="label">${d.label}</div>
+      <h3>${d.title}</h3>
+      <div class="desc">${d.desc}</div>
+      <div class="verdict"><strong>Status:</strong> ${d.verdict}</div>
+    </div>
+  `).join('');
+  grid.querySelectorAll('.decision').forEach(el => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.id;
+      const target = DECISIONS.find(d => d.id === id);
+      target.selected = !target.selected;
+      state.decisions_state[id] = target.selected;
+      saveState();
+      renderDecisions();
+    });
+  });
+}
+
+function renderTimeline() {
+  const list = document.getElementById('timelineList');
+  const stats = computeStats();
+  list.innerHTML = PHASES.map(p => {
+    const done = stats.phaseDone[p.id];
+    const total = stats.phaseTotal[p.id];
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    let cls = '';
+    if (done === total && total > 0) cls = 'done';
+    else if (done > 0) cls = 'active';
+    return `
+      <div class="tl-phase ${cls}">
+        <div class="when"><span class="num">${p.num}</span>${p.when}</div>
+        <div class="what">
+          <h3>${p.title}</h3>
+          <p>${p.body}</p>
+          <div class="meta">${p.meta} · ${done}/${total} tasks done</div>
+          ${total ? `<div class="bar-wrap"><div class="bar" style="width:${pct}%"></div></div>` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderTasks(filter = 'all') {
+  const container = document.getElementById('tasksByPhase');
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const inAWeek = new Date(today.getTime() + 7*24*60*60*1000);
+
+  let tasks = state.tasks.slice();
+  if (filter === 'open') tasks = tasks.filter(t => !t.done);
+  else if (filter === 'done') tasks = tasks.filter(t => t.done);
+  else if (filter === 'overdue') tasks = tasks.filter(t => !t.done && t.due && new Date(t.due) < today);
+  else if (['stevey','wife','both'].includes(filter)) tasks = tasks.filter(t => t.owner === filter);
+
+  // Group by phase, in PHASES order
+  container.innerHTML = PHASES.map(p => {
+    const phaseTasks = tasks.filter(t => t.phase === p.id);
+    if (phaseTasks.length === 0) return '';
+    const totalInPhase = state.tasks.filter(t => t.phase === p.id);
+    const doneInPhase = totalInPhase.filter(t => t.done).length;
+    return `
+      <div class="phase-group">
+        <div class="phase-group-head">
+          <h3>${p.num} · ${p.title}</h3>
+          <span class="count">${phaseTasks.length} shown</span>
+          <span class="progress-mini">${doneInPhase} / ${totalInPhase.length} done</span>
+        </div>
+        ${phaseTasks.map(t => {
+          let cls = '';
+          if (t.done) cls = 'done';
+          else if (t.due) {
+            const due = new Date(t.due);
+            if (due < today) cls = 'overdue';
+            else if (due < inAWeek) cls = 'urgent';
+          }
+          const ownerCls = t.owner;
+          return `
+            <div class="task ${cls}" data-id="${t.id}">
+              <button class="task-check" data-toggle="${t.id}" aria-label="Toggle done">${t.done ? '✓' : ''}</button>
+              <div class="task-title">
+                ${escapeHtml(t.title)}
+                ${t.notes ? `<div style="font-size:12px;color:var(--muted);margin-top:4px;font-weight:400;line-height:1.5">${escapeHtml(t.notes)}</div>` : ''}
+              </div>
+              <span class="owner-chip ${ownerCls}">${ownerLabel(t.owner)}</span>
+              <span class="phase-chip">P${p.id + 1}</span>
+              <span class="due-chip">${formatDue(t.due)}</span>
+              <button class="task-del" data-del="${t.id}" aria-label="Delete">×</button>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }).join('');
+
+  // Wire up toggles
+  container.querySelectorAll('[data-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => toggleTask(btn.dataset.toggle));
+  });
+  container.querySelectorAll('[data-del]').forEach(btn => {
+    btn.addEventListener('click', () => deleteTask(btn.dataset.del));
+  });
+}
+
+function ownerLabel(o) {
+  return o === 'stevey' ? 'Stevey' : o === 'wife' ? 'Wife' : 'Both';
+}
+
+function formatDue(due) {
+  if (!due) return '—';
+  const d = new Date(due);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const diffDays = Math.round((d - today) / (1000*60*60*24));
+  const monShort = d.toLocaleDateString('en-HK', { month: 'short', day: 'numeric' });
+  if (diffDays === 0) return 'Today';
+  if (diffDays === 1) return 'Tomorrow';
+  if (diffDays === -1) return 'Yesterday';
+  if (diffDays > 0 && diffDays < 7) return `In ${diffDays}d`;
+  if (diffDays < 0) return `${Math.abs(diffDays)}d overdue`;
+  return monShort;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function renderResearch() {
+  const grid = document.getElementById('researchGrid');
+  grid.innerHTML = state.research.map(r => `
+    <div class="research-card">
+      <h3>${escapeHtml(r.title)} <span class="num">/ ${r.id}</span></h3>
+      <span class="last-updated">${new Date().toLocaleDateString('en-HK', { day:'numeric', month:'short' })}</span>
+      <textarea data-research="${r.id}">${escapeHtml(r.notes)}</textarea>
+      <div class="tags">${r.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+    </div>
+  `).join('');
+  grid.querySelectorAll('[data-research]').forEach(t => {
+    let timer;
+    t.addEventListener('input', () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const id = t.dataset.research;
+        const card = state.research.find(r => r.id === id);
+        if (card) {
+          card.notes = t.value;
+          saveState();
+        }
+      }, 400);
+    });
+  });
+}
+
+function renderNotes() {
+  document.getElementById('noteStevey').value = state.notes.stevey || '';
+  document.getElementById('noteWife').value = state.notes.wife || '';
+}
+
+function renderDecisionsLog() {
+  const list = document.getElementById('decisionsLog');
+  const sorted = state.decisions.slice().sort((a,b) => (b.when || '').localeCompare(a.when || ''));
+  list.innerHTML = sorted.map(d => `
+    <div class="decision-entry">
+      <div class="when">${formatLogDate(d.when)}</div>
+      <h4>${escapeHtml(d.title)}</h4>
+      <p>${escapeHtml(d.why || '')}</p>
+      <div class="who">Made by ${escapeHtml(d.who || 'Both')}</div>
+    </div>
+  `).join('') || '<div style="font-size:13px;color:var(--muted);text-align:center;padding:24px">No decisions logged yet.</div>';
+}
+
+function formatLogDate(when) {
+  if (!when) return '';
+  const d = new Date(when);
+  return d.toLocaleDateString('en-HK', { day:'numeric', month:'short', year:'numeric' });
+}
+
+function renderQuestions() {
+  const grid = document.getElementById('questionsGrid');
+  grid.innerHTML = state.questions.map(q => `
+    <div class="question ${q.resolved ? 'resolved' : ''}" data-id="${q.id}">
+      <div class="q">${escapeHtml(q.text)}</div>
+      <button class="res" data-res="${q.id}">${q.resolved ? 'Resolved ✓' : 'Resolved'}</button>
+    </div>
+  `).join('');
+  grid.querySelectorAll('[data-res]').forEach(b => {
+    b.addEventListener('click', () => {
+      const id = b.dataset.res;
+      const q = state.questions.find(x => x.id === id);
+      if (q) {
+        q.resolved = !q.resolved;
+        saveState();
+        renderQuestions();
+      }
+    });
+  });
+}
+
+function renderStreakAndXp() {
+  const stats = computeStats();
+  document.getElementById('xpNum').textContent = state.xp;
+  document.getElementById('xpNum2').textContent = state.xp;
+  document.getElementById('streakNum').textContent = state.streak;
+  document.getElementById('streakSub').textContent = state.streak === 0 ? 'Complete a task today to start' : state.streak === 1 ? '1 day. Keep going.' : `${state.streak} days in a row`;
+  document.getElementById('xpSub').textContent = `10 pts per task · ${stats.earnedBadges.length} badges earned`;
+
+  // Badges
+  const badgesRow = document.getElementById('badgesRow');
+  badgesRow.innerHTML = BADGES.map(b => {
+    const earned = b.condition(stats);
+    const isEarned = stats.earnedBadges.includes(b.id);
+    return `<span class="badge ${isEarned ? 'earned' : ''}" title="${b.name}"><span class="icon">${b.icon}</span>${b.name}</span>`;
+  }).join('');
+
+  const earned = BADGES.filter(b => b.condition(stats));
+  document.getElementById('badgeNum').textContent = earned.length;
+  document.getElementById('badgeSub').textContent = earned.length === 0 ? 'Keep going' : earned[0].name + (earned.length > 1 ? ` +${earned.length - 1} more` : '');
+}
+
+function renderOverallProgress() {
+  const stats = computeStats();
+  const pct = stats.total ? Math.round((stats.doneCount / stats.total) * 100) : 0;
+  document.getElementById('pctNum').textContent = pct;
+  document.getElementById('progBar').style.width = pct + '%';
+  document.getElementById('statDone').textContent = stats.doneCount;
+  document.getElementById('statOpen').textContent = stats.total - stats.doneCount;
+  document.getElementById('statOverdue').textContent = stats.overdue;
+  document.getElementById('statThisWeek').textContent = stats.thisWeek;
+  document.getElementById('statXp').textContent = state.xp;
+  document.getElementById('metaDone').textContent = stats.doneCount;
+  document.getElementById('metaTotal').textContent = stats.total;
+  document.getElementById('metaStreak').textContent = state.streak;
+}
+
+/* ----- Stats / logic ----- */
+
+function computeStats() {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const inAWeek = new Date(today.getTime() + 7*24*60*60*1000);
+  const total = state.tasks.length;
+  const doneCount = state.tasks.filter(t => t.done).length;
+  const overdue = state.tasks.filter(t => !t.done && t.due && new Date(t.due) < today).length;
+  const thisWeek = state.tasks.filter(t => !t.done && t.due && new Date(t.due) >= today && new Date(t.due) <= inAWeek).length;
+  const thisMonth = state.tasks.filter(t => !t.done && t.due && new Date(t.due) >= today && new Date(t.due).getMonth() === today.getMonth() && new Date(t.due).getFullYear() === today.getFullYear()).length;
+  const nextDue = state.tasks.filter(t => !t.done && t.due).sort((a,b) => new Date(a.due) - new Date(b.due))[0];
+
+  const phaseDone = {}; const phaseTotal = {};
+  PHASES.forEach(p => {
+    const all = state.tasks.filter(t => t.phase === p.id);
+    phaseTotal[p.id] = all.length;
+    phaseDone[p.id] = all.filter(t => t.done).length;
+  });
+
+  const doneBy = { stevey: 0, wife: 0, both: 0 };
+  state.tasks.filter(t => t.done).forEach(t => { doneBy[t.owner] = (doneBy[t.owner] || 0) + 1; });
+
+  const earnedBadges = BADGES.filter(b => b.condition({ doneCount, total, overdue, thisWeek, thisMonth, nextDue, phaseDone, phaseTotal, streak: state.streak, xp: state.xp, doneBy })).map(b => b.id);
+
+  return { total, doneCount, overdue, thisWeek, thisMonth, nextDue, phaseDone, phaseTotal, doneBy, earnedBadges };
+}
+
+function toggleTask(id) {
+  const t = state.tasks.find(x => x.id === id);
+  if (!t) return;
+  t.done = !t.done;
+  if (t.done) {
+    t.doneAt = new Date().toISOString();
+    if (!t.xp) {
+      state.xp += 10;
+      t.xp = true;
+      showXpPop();
+    }
+    // streak
+    const today = new Date().toDateString();
+    if (state.lastTaskDate !== today) {
+      const yesterday = new Date(Date.now() - 86400000).toDateString();
+      if (state.lastTaskDate === yesterday || state.streak === 0) {
+        state.streak = (state.streak || 0) + 1;
+      } else if (state.lastTaskDate) {
+        state.streak = 1;
+      } else {
+        state.streak = 1;
+      }
+      state.lastTaskDate = today;
+    }
+    showToast('Task complete · +10 XP');
+  } else {
+    t.doneAt = null;
+    // don't reverse XP
+  }
+  saveState();
+  rerenderAll();
+}
+
+function deleteTask(id) {
+  if (!confirm('Delete this task?')) return;
+  state.tasks = state.tasks.filter(t => t.id !== id);
+  saveState();
+  rerenderAll();
+  showToast('Task deleted');
+}
+
+function rerenderAll() {
+  renderDecisions();
+  renderTimeline();
+  renderTasks(currentFilter);
+  renderResearch();
+  renderNotes();
+  renderDecisionsLog();
+  renderQuestions();
+  renderStreakAndXp();
+  renderOverallProgress();
+}
+
+/* ----- Modals ----- */
+
+let currentFilter = 'all';
+
+document.getElementById('addTaskBtn').addEventListener('click', () => {
+  document.getElementById('taskModal').classList.add('show');
+  setTimeout(() => document.getElementById('taskTitle').focus(), 50);
+});
+document.getElementById('cancelTask').addEventListener('click', () => document.getElementById('taskModal').classList.remove('show'));
+document.getElementById('saveTask').addEventListener('click', () => {
+  const title = document.getElementById('taskTitle').value.trim();
+  if (!title) { alert('Task needs a title'); return; }
+  state.tasks.push({
+    id: cryptoId(),
+    title,
+    phase: parseInt(document.getElementById('taskPhase').value),
+    owner: document.getElementById('taskOwner').value,
+    due: document.getElementById('taskDue').value || null,
+    notes: document.getElementById('taskNotes').value.trim(),
+    done: false,
+    doneAt: null,
+    xp: false
+  });
+  saveState();
+  document.getElementById('taskModal').classList.remove('show');
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDue').value = '';
+  document.getElementById('taskNotes').value = '';
+  rerenderAll();
+  showToast('Task added · ' + PHASES[parseInt(document.getElementById('taskPhase').value)].title);
+});
+
+document.getElementById('addDecisionBtn').addEventListener('click', () => {
+  document.getElementById('decisionModal').classList.add('show');
+  setTimeout(() => document.getElementById('decisionTitle').focus(), 50);
+});
+document.getElementById('cancelDecision').addEventListener('click', () => document.getElementById('decisionModal').classList.remove('show'));
+document.getElementById('saveDecision').addEventListener('click', () => {
+  const title = document.getElementById('decisionTitle').value.trim();
+  if (!title) { alert('Decision needs a title'); return; }
+  state.decisions.push({
+    id: cryptoId(),
+    when: new Date().toISOString().slice(0,10),
+    title,
+    why: document.getElementById('decisionWhy').value.trim(),
+    who: document.getElementById('decisionBy').value
+  });
+  saveState();
+  document.getElementById('decisionModal').classList.remove('show');
+  document.getElementById('decisionTitle').value = '';
+  document.getElementById('decisionWhy').value = '';
+  rerenderAll();
+  showToast('Decision logged');
+});
+
+document.getElementById('addQuestionBtn').addEventListener('click', () => {
+  document.getElementById('questionModal').classList.add('show');
+  setTimeout(() => document.getElementById('questionText').focus(), 50);
+});
+document.getElementById('cancelQuestion').addEventListener('click', () => document.getElementById('questionModal').classList.remove('show'));
+document.getElementById('saveQuestion').addEventListener('click', () => {
+  const text = document.getElementById('questionText').value.trim();
+  if (!text) { alert('Question needs a body'); return; }
+  state.questions.push({ id: cryptoId(), text, resolved: false });
+  saveState();
+  document.getElementById('questionModal').classList.remove('show');
+  document.getElementById('questionText').value = '';
+  rerenderAll();
+  showToast('Question added');
+});
+
+// Close modals on backdrop click
+document.querySelectorAll('.modal-bg').forEach(bg => {
+  bg.addEventListener('click', e => {
+    if (e.target === bg) bg.classList.remove('show');
+  });
+});
+
+/* ----- Filters ----- */
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.chip');
+  if (!btn) return;
+  currentFilter = btn.dataset.filter;
+  document.querySelectorAll('#filters .chip').forEach(c => c.classList.toggle('active', c === btn));
+  renderTasks(currentFilter);
+});
+
+/* ----- Notes auto-save ----- */
+function wireNote(id) {
+  const el = document.getElementById(id);
+  let timer;
+  el.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const key = id === 'noteStevey' ? 'stevey' : 'wife';
+      state.notes[key] = el.value;
+      saveState();
+      document.getElementById(id + 'Hint').textContent = 'Saved at ' + new Date().toLocaleTimeString('en-HK', { hour:'2-digit', minute:'2-digit' });
+    }, 400);
+  });
+}
+wireNote('noteStevey');
+wireNote('noteWife');
+
+/* ----- Toast + XP pop ----- */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+function showXpPop() {
+  const p = document.getElementById('xpPop');
+  p.classList.add('show');
+  setTimeout(() => p.classList.remove('show'), 800);
+}
+
+/* ----- Init ----- */
+rerenderAll();
+</script>
+
+</body>
+</html>
