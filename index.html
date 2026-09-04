@@ -4,8 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="theme-color"="#F4EFE6" />
-<title>Roof. Roadmap. — Owners Guide for the Rented Roof</title>
-<meta name="description" content="A private owners guide for the rental roof project. Tasks, research, decisions, shared notes and gamified progress tracking for Stevey & wife." />
+<title>Roof. Roadmap. — Kam Sheung Rd 3F + Solar Canopy</title>
+<meta name="description" content="Kam Sheung Rd 3F + rooftop — tenant lease + solar canopy. Private owners guide with gamified tasks, research hub, and shared notes for Jay & wife." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -133,7 +133,7 @@
   .task.overdue .task-title::before{content:'● ';color:var(--crimson);font-size:11px;vertical-align:middle;margin-right:4px}
   .task-meta{display:flex;gap:8px;align-items:center;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500}
   .owner-chip{display:inline-flex;align-items:center;gap:4px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;padding:4px 8px;font-weight:600}
-  .owner-chip.stevey{background:var(--ink);color:var(--bone)}
+  .owner-chip.jay{background:var(--ink);color:var(--bone)}
   .owner-chip.wife{background:var(--sage);color:var(--ink)}
   .owner-chip.both{background:var(--sky);color:var(--cream)}
   .phase-chip{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:4px 8px;border:1px solid var(--rule)}
@@ -175,7 +175,7 @@
   /* ===== Shared notes ===== */
   .shared-notes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   .note-col{background:var(--cream);border:1px solid var(--rule);padding:24px}
-  .note-col.stevey{border-top:3px solid var(--ink)}
+  .note-col.jay{border-top:3px solid var(--ink)}
   .note-col.wife{border-top:3px solid var(--sage)}
   .note-col h3{font-family:'Outfit',sans-serif;font-weight:700;font-size:18px;color:var(--ink);margin-bottom:12px;display:flex;align-items:center;gap:8px}
   .note-col .who{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
@@ -265,15 +265,40 @@
 <section class="hero" id="top">
   <div class="wrap">
     <h1>Roof<span class="period">.</span><br>Roadmap<span class="period">.</span></h1>
-    <p class="hero-tag">A private owners guide for getting the roof rental-ready. Tasks, research, shared notes, and a way to see who's doing what — without the WhatsApp chaos.</p>
+    <p class="hero-tag">Kam Sheung Road 3F + Rooftop — lease the unit, build the solar canopy, stop the $10k/mo holding loss. Tenant + grid income = ~$18,300/mo combined.</p>
     <div class="hero-meta">
       <div><strong id="metaDone">0</strong> of <strong id="metaTotal">0</strong> tasks done</div>
       <div><strong id="metaStreak">0</strong> day streak</div>
-      <div>Started <strong>Sep 2026</strong></div>
+      <div>Target move-in <strong>3 Oct 2026</strong></div>
+    </div>
+
+    <!-- DEAL MATH PANEL -->
+    <div class="progress-card" style="margin-top:32px">
+      <div class="label">Deal math</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:16px">
+        <div>
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,239,230,0.55);margin-bottom:6px">Tenant rent</div>
+          <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.03em;line-height:1;color:var(--bone)">HK$ 15,000<span style="font-size:16px;color:var(--terracotta);margin-left:4px">/mo</span></div>
+          <div style="font-size:11px;color:rgba(244,239,230,0.55);margin-top:4px">3F + rooftop + car space</div>
+        </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,239,230,0.55);margin-bottom:6px">CLP FiT solar</div>
+          <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.03em;line-height:1;color:var(--bone)">HK$ 3,300<span style="font-size:16px;color:var(--terracotta);margin-left:4px">/mo</span></div>
+          <div style="font-size:11px;color:rgba(244,239,230,0.55);margin-top:4px">@ $4.00/kWh · until 31 Dec 2033</div>
+        </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,239,230,0.55);margin-bottom:6px">Holding loss to kill</div>
+          <div style="font-family:'Outfit',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.03em;line-height:1;color:var(--bone)">HK$ 10,000<span style="font-size:16px;color:var(--crimson);margin-left:4px">/mo</span></div>
+          <div style="font-size:11px;color:rgba(244,239,230,0.55);margin-top:4px">Stops the day tenant moves in</div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(244,239,230,0.15);margin-top:24px;padding-top:20px;display:flex;gap:32px;flex-wrap:wrap">
+        <div style="font-size:12px;color:rgba(244,239,230,0.7)">Solar canopy build: <strong style="color:var(--bone)">$110–130k</strong> all-in · Payback <strong style="color:var(--bone)">~3–3.5 yrs</strong> · Net remaining FiT <strong style="color:var(--bone)">~$150k+</strong></div>
+      </div>
     </div>
 
     <!-- OVERALL PROGRESS -->
-    <div class="progress-card">
+    <div class="progress-card" style="margin-top:16px">
       <div class="label">Overall project progress</div>
       <div class="pct"><span id="pctNum">0</span><span class="sign">%</span></div>
       <div class="bar-wrap"><div class="bar" id="progBar"></div></div>
@@ -367,7 +392,7 @@
         <button class="chip active" data-filter="all">All</button>
         <button class="chip" data-filter="open">Open</button>
         <button class="chip" data-filter="done">Done</button>
-        <button class="chip" data-filter="stevey">Stevey</button>
+        <button class="chip" data-filter="jay">Jay</button>
         <button class="chip" data-filter="wife">Wife</button>
         <button class="chip" data-filter="both">Both</button>
         <button class="chip" data-filter="overdue">Overdue</button>
@@ -406,16 +431,16 @@
         <span class="eyebrow">Between Us</span>
       </div>
       <div>
-        <h2 class="section-title">Stevey's corner.<br>Wife's corner.</h2>
+        <h2 class="section-title">Jay's corner.<br>Wife's corner.</h2>
         <p style="font-size:14px;color:var(--muted);margin-top:16px;max-width:560px">Two textareas that auto-save. Use it for the in-progress thoughts that don't have a task yet. No more "did you tell me about the contractor?"</p>
       </div>
     </div>
 
     <div class="shared-notes">
-      <div class="note-col stevey">
-        <h3>Stevey <span class="who">· owner</span></h3>
-        <textarea id="noteStevey" placeholder="Loose thoughts, half-formed plans, questions to follow up on…&#10;&#10;e.g.&#10;- Need to ask mom what she remembers about the roof leak from 2019&#10;- Compare Centaline vs Midland agent fees"></textarea>
-        <div class="hint" id="noteSteveyHint">Auto-saves on change</div>
+      <div class="note-col jay">
+        <h3>Jay <span class="who">· owner</span></h3>
+        <textarea id="noteJay" placeholder="Loose thoughts, half-formed plans, questions to follow up on…&#10;&#10;e.g.&#10;- Need to ask mom what she remembers about the roof leak from 2019&#10;- Compare Centaline vs Midland agent fees"></textarea>
+        <div class="hint" id="noteJayHint">Auto-saves on change</div>
       </div>
       <div class="note-col wife">
         <h3>Wife <span class="who">· owner</span></h3>
@@ -505,7 +530,7 @@
     <div class="field">
       <label>Owner</label>
       <select id="taskOwner">
-        <option value="stevey">Stevey</option>
+        <option value="jay">Jay</option>
         <option value="wife">Wife</option>
         <option value="both">Both</option>
       </select>
@@ -541,7 +566,7 @@
       <label>Made by</label>
       <select id="decisionBy">
         <option value="Both">Both</option>
-        <option value="Stevey">Stevey</option>
+        <option value="Jay">Jay</option>
         <option value="Wife">Wife</option>
       </select>
     </div>
@@ -575,37 +600,34 @@
 /* ----- Static seed data ----- */
 
 const PHASES = [
-  { id: 0, num: '01', when: 'Sep–Oct 2026', title: 'Direction', body: 'Lock in what we\'re doing — rent out / solar / renovate. Align with wife. Set the budget envelope.', meta: '2-4 weeks' },
-  { id: 1, num: '02', when: 'Oct–Nov 2026', title: 'Research', body: 'Rental yield in our district. Solar feasibility for the roof. Contractor shortlist. Tax + legal basics.', meta: '4-6 weeks' },
-  { id: 2, num: '03', when: 'Nov–Dec 2026', title: 'Decisions', body: 'Pick the rental model (full / serviced / co-living). Decide solar yes/no. Sign off on renovation scope.', meta: '2-3 weeks' },
-  { id: 3, num: '04', when: 'Dec 2026–Jan 2027', title: 'Prep work', body: 'Roof inspection. Quote package. Mortgage/insurance review. Furnishing plan if applicable.', meta: '4-6 weeks' },
-  { id: 4, num: '05', when: 'Jan–Mar 2027', title: 'Permits & build', body: 'Buildings Department submissions if structural. Solar installation. Light renovation. Final sign-off.', meta: '6-10 weeks' },
-  { id: 5, num: '06', when: 'Mar–Apr 2027', title: 'List & let', body: 'Pick agent. Photography. Listing. Showings. Sign lease. Hand over.', meta: '3-4 weeks' }
+  { id: 0, num: '01', when: 'Sep 4 – Sep 10', title: 'Vendor survey', body: 'Send the WhatsApp inquiry to all 3 solar vendors. Book site inspections. Confirm asking price with both realtors. Lock move-in target.', meta: '1 week' },
+  { id: 1, num: '02', when: 'Sep 7 – Oct 3', title: 'Lease execution', body: 'Host viewings. Sign lease with landlord access clause for solar. Collect 2 mo deposit + 1st mo rent. Hand over keys. Stop the $10k/mo holding loss.', meta: '4 weeks' },
+  { id: 2, num: '03', when: 'Sep 11 – Nov 15', title: 'Solar canopy build', body: 'Award vendor contract. AP structural filing with BD. CLP grid application. Demolish old enclosure. Erect 2.5m canopy + panels. CLP installs smart meter. Passive income begins.', meta: '10 weeks' }
 ];
 
 const DECISIONS = [
   {
     id: 'rent',
-    label: 'Primary path',
-    title: 'Rent out the flat',
-    desc: 'Long-term tenant. Furnished or unfurnished. Yield is the deciding number, not the trend.',
-    verdict: 'Currently leaning YES.',
+    label: 'Track 1 · Tenancy',
+    title: 'Lease the 3F unit long-term',
+    desc: 'Residential tenant only — no commercial / F&B / retail. Asking $15,000/mo with rooftop access + car space. Standard landlord access clause lets solar work happen in parallel.',
+    verdict: 'Locked in. Realtors re-confirming.',
     selected: true
   },
   {
     id: 'solar',
-    label: 'Side bet',
-    title: 'Solar panels on the roof',
-    desc: 'Feasibility depends on roof orientation, age, structural capacity, and CLP grid buy-back tariff. Will know after phase 2.',
-    verdict: 'Under research.',
-    selected: false
+    label: 'Track 2 · Solar canopy',
+    title: '2.5m AP-certified solar canopy',
+    desc: 'Demolish old worn-down enclosure, erect new steel/aluminum canopy, mount panels, file AP with Buildings Department, connect to CLP grid under FiT @ $4.00/kWh.',
+    verdict: 'Going. Vendors being surveyed.',
+    selected: true
   },
   {
-    id: 'reno',
-    label: 'Optional',
-    title: 'Light roof renovation',
-    desc: 'Waterproofing, drainage, accessible for tenant. Light only — no full rebuild unless the inspector says otherwise.',
-    verdict: 'Will pair with solar install if we go that way.',
+    id: 'parallel',
+    label: 'Execution',
+    title: 'Run tenancy + solar in parallel',
+    desc: 'Lease includes landlord access clause (48hr written notice) so solar work proceeds without delaying tenancy. Critical to hit Oct 3 move-in AND capture Nov 1 CLP connection.',
+    verdict: 'Required, not optional.',
     selected: true
   }
 ];
@@ -626,63 +648,60 @@ const BADGES = [
 ];
 
 const SEED_TASKS = [
-  /* Phase 0 — Direction */
-  { phase: 0, owner: 'both', title: 'Sit down together and lock the primary goal (rent vs hold vs sell)', due: '2026-09-10', notes: 'Anchor conversation. Come with numbers, not feelings.' },
-  { phase: 0, owner: 'stevey', title: 'Define the yield number that makes this worthwhile', due: '2026-09-12', notes: 'HK district comps. Net yield after mortgage, mgmt fee, tax.' },
-  { phase: 0, owner: 'wife', title: 'List non-negotiables (no short-let, no student, etc.)', due: '2026-09-14', notes: '' },
-  { phase: 0, owner: 'both', title: 'Set the budget envelope for solar / renovation', due: '2026-09-20', notes: 'Cap that we\'d both be comfortable losing if the unit sits empty.' },
+  /* Phase 0 — Vendor survey (Sep 4–10) */
+  { phase: 0, owner: 'jay', title: 'Send the WhatsApp inquiry to New Star Energy (6022 2108 / 5545 8297)', due: '2026-09-05', notes: 'Copy script from research tab. Hyper-local YL team — best odds of fast Kam Sheung Rd visit.' },
+  { phase: 0, owner: 'jay', title: 'Send the WhatsApp inquiry to SolarHK (8175 8176)', due: '2026-09-05', notes: 'Get their turnkey village-house quote (~$128k benchmark) for comparison.' },
+  { phase: 0, owner: 'jay', title: 'Send the WhatsApp inquiry to BW Green Power (2127 4915 / 6233 8647)', due: '2026-09-05', notes: 'Tsuen Wan-based; typhoon/wind-load specialists.' },
+  { phase: 0, owner: 'jay', title: 'Re-confirm $15k/mo asking with both active realtors', due: '2026-09-06', notes: '28Hse, Centaline, Midland; Kam Sheung Rd + Yuen Long channels.' },
+  { phase: 0, owner: 'jay', title: 'Set viewing slots for the weekend', due: '2026-09-06', notes: 'Open house format if possible.' },
+  { phase: 0, owner: 'both', title: 'Decide furnished vs unfurnished', due: '2026-09-07', notes: 'Affects rent ceiling and what we need to move out.' },
+  { phase: 0, owner: 'wife', title: 'Take inventory of personal items still in the unit', due: '2026-09-07', notes: 'Decide what to remove / store / leave as furnishings.' },
 
-  /* Phase 1 — Research */
-  { phase: 1, owner: 'stevey', title: 'Pull 6 comparable rentals in our district on Spacious / Midland / Centaline', due: '2026-10-05', notes: '' },
-  { phase: 1, owner: 'wife', title: 'Ask friends who rent out for agent recommendation + fee structure', due: '2026-10-10', notes: 'Two birds, one conversation.' },
-  { phase: 1, owner: 'stevey', title: 'Solar feasibility — get a quote from 2 installers', due: '2026-10-25', notes: 'SolarHK, Sundwealth, or local contractor.' },
-  { phase: 1, owner: 'stevey', title: 'Check roof orientation, age, and last waterproofing date', due: '2026-10-15', notes: 'Ask building management if there\'s a record.' },
-  { phase: 1, owner: 'wife', title: 'Research landlord insurance options', due: '2026-10-30', notes: 'AXA, MSIG, AIG.' },
-  { phase: 1, owner: 'both', title: 'Talk to a tax advisor about rental income + depreciation', due: '2026-11-05', notes: '' },
+  /* Phase 1 — Lease execution (Sep 7–Oct 3) */
+  { phase: 1, owner: 'jay', title: 'Host tenant viewings', due: '2026-09-20', notes: '' },
+  { phase: 1, owner: 'jay', title: 'Confirm landlord access clause wording with both realtors BEFORE signing', due: '2026-09-21', notes: 'Exact text: "The Tenant agrees that the Landlord and authorized contractors reserve the right to access the rooftop via the external staircase upon 48 hours\' prior written notice to carry out scheduled rooftop canopy upgrade works."' },
+  { phase: 1, owner: 'wife', title: 'Tenant screening — shortlist criteria', due: '2026-09-22', notes: 'Income 3x rent, employer letter, 2 references, no commercial use clause.' },
+  { phase: 1, owner: 'jay', title: 'Finalize and sign Tenancy Agreement', due: '2026-09-25', notes: '' },
+  { phase: 1, owner: 'jay', title: 'Collect 2 months\' security deposit + 1st month rent ($15k)', due: '2026-09-25', notes: 'Total in: $45,000.' },
+  { phase: 1, owner: 'jay', title: 'File Stamp Duty at IRD (0.25% of annual rent + HK$5)', due: '2026-09-30', notes: '0.25% × $180,000 = $450 + $5 = $455. Pay within 30 days of lease execution.' },
+  { phase: 1, owner: 'jay', title: 'Register lease at IRD if term > 1 year', due: '2026-09-30', notes: '' },
+  { phase: 1, owner: 'wife', title: 'Move-out coordination + final clean', due: '2026-10-02', notes: 'If any of our stuff is staying.' },
+  { phase: 1, owner: 'both', title: 'Tenant handover — keys, access codes, meter readings', due: '2026-10-03', notes: '🎉 Holding loss officially stops.' },
+  { phase: 1, owner: 'jay', title: 'Notify mortgage bank we\'re renting out the unit', due: '2026-10-05', notes: 'Required by most HK mortgage terms; check for admin fee.' },
 
-  /* Phase 2 — Decisions */
-  { phase: 2, owner: 'both', title: 'Decide: full unit vs room-by-room vs serviced', due: '2026-11-15', notes: 'After yield numbers are in.' },
-  { phase: 2, owner: 'both', title: 'Solar: go or no-go?', due: '2026-11-20', notes: 'Based on quote vs CLP FiT.' },
-  { phase: 2, owner: 'stevey', title: 'Pick furnishing package (full / partial / none)', due: '2026-11-25', notes: '' },
-  { phase: 2, owner: 'both', title: 'Sign off on renovation scope and budget', due: '2026-12-01', notes: '' },
-
-  /* Phase 3 — Prep */
-  { phase: 3, owner: 'stevey', title: 'Get formal roof inspection done', due: '2026-12-15', notes: '' },
-  { phase: 3, owner: 'stevey', title: 'Request 3 contractor quotes for renovation', due: '2026-12-20', notes: '' },
-  { phase: 3, owner: 'wife', title: 'Sort what stays / goes from the flat', due: '2026-12-22', notes: 'If fully furnished.' },
-  { phase: 3, owner: 'stevey', title: 'Review mortgage structure (any rate reset coming?)', due: '2027-01-05', notes: '' },
-  { phase: 3, owner: 'stevey', title: 'Insurance — get landlord policy in place', due: '2027-01-10', notes: '' },
-
-  /* Phase 4 — Permits & build */
-  { phase: 4, owner: 'stevey', title: 'File any BD submissions required for solar / structural', due: '2027-01-20', notes: 'AP/RSC if applicable.' },
-  { phase: 4, owner: 'stevey', title: 'Schedule solar install', due: '2027-02-01', notes: '' },
-  { phase: 4, owner: 'stevey', title: 'Schedule renovation work', due: '2027-02-10', notes: '6-10 week lead time.' },
-  { phase: 4, owner: 'both', title: 'Final walk-through and snag list', due: '2027-03-01', notes: 'Before listing.' },
-
-  /* Phase 5 — List & let */
-  { phase: 5, owner: 'both', title: 'Sign agency agreement (or self-list)', due: '2027-03-10', notes: '' },
-  { phase: 5, owner: 'wife', title: 'Coordinate professional photography + floor plan', due: '2027-03-12', notes: '' },
-  { phase: 5, owner: 'stevey', title: 'Write listing copy', due: '2027-03-13', notes: '' },
-  { phase: 5, owner: 'both', title: 'Showings + tenant shortlist', due: '2027-03-20', notes: 'Two-week buffer.' },
-  { phase: 5, owner: 'both', title: 'Sign lease and handover', due: '2027-04-01', notes: '🎉' }
+  /* Phase 2 — Solar canopy build (Sep 11–Nov 15) */
+  { phase: 2, owner: 'jay', title: 'Compare all 3 vendor quotes side-by-side', due: '2026-09-10', notes: 'Score: price, panel tier, inverter brand, structural warranty, BD-filing experience, lead time.' },
+  { phase: 2, owner: 'both', title: 'Award vendor contract + sign + 30% deposit', due: '2026-09-15', notes: '' },
+  { phase: 2, owner: 'jay', title: 'Vendor submits AP structural plans to Buildings Department', due: '2026-09-20', notes: 'This is the bottleneck — push for fast-track. BD review can take 4–8 weeks.' },
+  { phase: 2, owner: 'jay', title: 'Vendor files CLP grid-connection application', due: '2026-09-25', notes: 'CLP parallel-track to BD; meter install at end.' },
+  { phase: 2, owner: 'jay', title: 'Coordinate with tenant — schedule demolition', due: '2026-10-15', notes: 'Use the landlord access clause. 48hr written notice. 1–2 days max.' },
+  { phase: 2, owner: 'jay', title: 'Demolish old worn-down enclosure', due: '2026-10-20', notes: '1–2 days.' },
+  { phase: 2, owner: 'jay', title: 'Erect 2.5m AP-certified steel/aluminum canopy + mount panels', due: '2026-10-25', notes: '2–3 days. Critical structural milestone.' },
+  { phase: 2, owner: 'jay', title: 'CLP engineers install smart meter + grid connection', due: '2026-11-15', notes: '🎉 First solar payment lands ~30 days later.' },
+  { phase: 2, owner: 'jay', title: 'Buy landlord insurance policy', due: '2026-10-10', notes: 'AXA, MSIG, or AIG. ~$1.5–3k/yr. Standard homeowner doesn\'t cover tenant damage.' },
+  { phase: 2, owner: 'wife', title: 'Set up CLP FiT direct-deposit to bank', due: '2026-11-15', notes: 'Confirm bank account matches FiT registration.' },
+  { phase: 2, owner: 'both', title: 'Add this to the decision log: lease is signed, canopy vendor is locked', due: '2026-09-15', notes: '' }
 ];
 
 const SEED_RESEARCH = [
-  { id: 'rental', title: 'HK rental market — our district', notes: 'TODO: median rent psf for our size (2-bed / 3-bed). Spacious + Midland portals. Look at last 90 days, gross yield calc = (annual rent / property value) × 100. Net yield = gross minus mgmt fee, mortgage interest, insurance, vacancy allowance (5–8%). Target net 3%+ for it to be worth doing.', tags: ['rent', 'yield', 'district'] },
-  { id: 'solar', title: 'Solar feasibility', notes: 'CLP FiT (Feed-in Tariff) rate as of 2026 needs checking — current rates ~HK$2.50–4.00/kWh for systems ≤10kW. Payback period depends on roof orientation (south-facing ideal in HK, ~22° tilt), shading, panel efficiency. Building Department may require AP submission if structural changes. Talk to SolarHK and one local contractor.', tags: ['solar', 'CLP', 'BD'] },
-  { id: 'legal', title: 'Legal & tax', notes: 'Property tax (15% on net rent after 20% statutory deduction, OR 15% on gross with no deduction — usually net is better). Stamp duty on lease: 0.25% of annual rent + HK$5. Need to register lease at IRD if term > 1 year. Landlord obligations: safety (gas if applicable), structural, no harassment. Consider a written tenancy agreement template.', tags: ['tax', 'IRD', 'lease'] },
-  { id: 'finance', title: 'Finance & insurance', notes: 'Review if mortgage allows renting out (most do, some restrict). Notify bank. Insurance: standard homeowner doesn\'t cover tenant damage — need landlord policy. Quoted: AXA Home Landlord, MSIG, AIG. ~HK$1,500–3,000/year typical for a unit this size.', tags: ['mortgage', 'insurance'] },
-  { id: 'agents', title: 'Agent shortlist', notes: 'Compare: Centaline (largest), Midland (Mid-Levels focused), OKAY.com, Spacious (boutique). Typical fee: half-month rent for 1-year tenancy, full-month for 2-year. Ask about photography, floor plan, virtual tour included. Get references from someone who\'s rented recently.', tags: ['agent', 'Centaline', 'Midland'] },
-  { id: 'reno', title: 'Renovation scope', notes: 'Light only — waterproofing inspection, repaint, fix any leaks, replace damaged tiles, upgrade drainage if needed. Budget cap TBD with wife. Get 3 quotes. Ask for itemised breakdown (materials vs labour). Typical HK reno contractor lead time 6–10 weeks. Check if any BD approval needed.', tags: ['renovation', 'contractor'] }
+  { id: 'rental', title: 'Kam Sheung Rd rental market', notes: '700 sq ft 3F village house + rooftop + car space. Asking $15,000/mo. Comparables to check on 28Hse / Spacious: other 3F Kam Sheung Rd units, last 90 days. Aim: gross yield ~4.5–5% net of mortgage, mgmt, tax, vacancy. No commercial tenants — residential only.', tags: ['rent', 'KCR', 'village-house'] },
+  { id: 'solar-vendors', title: 'Solar vendor contacts', notes: '1) NEW STAR ENERGY (新煌能源) — TOP PICK · Shop D G/F Hoi Shuen Bldg, 96 Hop Yick Rd, Yuen Long · Tel/WA: 6022 2108 / 5545 8297 · info@nsenergy.com.hk · Hyper-local YL, handles demolition + AP filings + CLP FiT.\n\n2) SOLARHK (香港太陽能) · Rm B 7/F Dade Ind Bldg, Kwai Chung · Tel/WA: 8175 8176 · info@solarhk.org · Turnkey village-house packages ~$128k. Tier-1 panels (Trina/Longi), Huawei inverters.\n\n3) BW GREEN POWER (百威绿能) · Rm D-G 5/F Wah Lik Ind Centre, Tsuen Wan · Tel: 2127 4915 · WA: 6233 8647 · sales@bwgreenpower.com · Typhoon / wind-load specialists, BD submissions.\n\nInitial inquiry (WhatsApp): "Hi, I have a 700 sq ft 3F village house on Kam Sheung Road with an existing worn-down half-roof enclosure. I want to dismantle the old structure and replace it with a 2.5m AP-certified solar canopy for the CLP FiT scheme. Please arrange a free site inspection to provide a full quotation including demolition, BD filings, and installation."', tags: ['solar', 'vendors', 'Yuen-Long'] },
+  { id: 'solar-econ', title: 'Solar economics', notes: 'Canopy all-in: $110–130k (demolition + AP filings + 2.5m steel/aluminum frame + panels + CLP submission). Estimated monthly: $3,300–3,500/mo @ $4.00/kWh CLP FiT. Payback: 3.0–3.5 yrs. Government FiT scheme ends 31 Dec 2033 — remaining ~4.5 years post-payback = pure net profit (~$150k+).', tags: ['solar', 'FiT', 'CLP'] },
+  { id: 'lease-clause', title: 'Critical landlord access clause', notes: 'Insert in Tenancy Agreement:\n\n"The Tenant agrees that the Landlord and authorized contractors reserve the right to access the rooftop via the external staircase upon 48 hours\' prior written notice to carry out scheduled rooftop canopy upgrade works."\n\nThis lets solar work proceed in parallel with tenancy — without it, you can\'t enter the rooftop during the lease.', tags: ['lease', 'access', 'critical'] },
+  { id: 'tax', title: 'Property tax + stamp duty', notes: 'PROPERTY TAX: 15% on net rent (after 20% statutory deduction — standard better than gross). File annually via IRD.\n\nSTAMP DUTY on lease: 0.25% × annual rent + HK$5. For $15k/mo = 0.25% × $180k + $5 = $455. Pay within 30 days of lease execution.\n\nLEASE REGISTRATION at IRD if term > 1 year (mandatory; protect yourself in any future dispute).', tags: ['IRD', 'tax', 'stamp-duty'] },
+  { id: 'bank-ins', title: 'Bank notification + insurance', notes: 'BANK: Most HK mortgages require written notification before renting out. Some charge admin fee (~$1–2k or 0.1% of loan). Confirm rate isn\'t affected. Check for any "owner-occupier only" clauses.\n\nINSURANCE: Standard homeowner policy does NOT cover tenant damage. Need a landlord policy. AXA / MSIG / AIG. ~$1.5–3k/yr. Buy before tenant moves in.', tags: ['mortgage', 'insurance', 'bank'] },
+  { id: 'risk', title: 'Risk register', notes: '1) Oct 3 move-in slips → $10k/mo holding loss keeps ticking.\n2) BD AP submission delayed >4 wks → Nov 1 CLP connection at risk → lost solar months.\n3) Vendor price creep post-deposit → keep contract with fixed-price + scope lock.\n4) Tenant refuses rooftop access → lease clause protects you, but document the 48hr notice served.\n5) Mortgage bank requires refinance to permit rental → adds 2–4 wks + fees.\n6) CLP FiT scheme policy change mid-build → only the installed system is grandfathered at $4/kWh.', tags: ['risk', 'contingency'] }
 ];
 
 const SEED_QUESTIONS = [
-  'Does the current mortgage allow renting out without penalty?',
-  'What\'s the realistic vacancy rate for our district / size?',
-  'How old is the roof and when was it last waterproofed?',
-  'Will CLP buy back solar at a rate that justifies the install?',
-  'Do we want to manage ourselves or pay an agent?',
-  'What\'s our hard stop date — when does it become not worth doing?'
+  'Does the Kam Sheung Rd mortgage allow renting out without penalty or rate change?',
+  'Furnished vs unfurnished — what does wife want / what gives best tenant quality?',
+  'Self-manage vs agent — agent fee is half-month rent for 1-yr lease; do we want that back in our pocket?',
+  'What\'s Plan B if Oct 3 move-in slips a week? (Holding loss = $10k/mo.)',
+  'Are we OK if solar payback stretches to 4 years instead of 3.5?',
+  'Tenant type preference — family vs professional vs expat? (Affects screening + lease language.)',
+  'Should the canopy include a usable rooftop deck for the tenant, or just panels? (Affects rent and BD scope.)',
+  'What happens if one vendor\'s quote comes in $30k lower than the others — do we re-check scope?'
 ];
 
 /* ----- App state (persisted) ----- */
@@ -691,7 +710,7 @@ const STORE_KEY = '***';
 const defaultState = () => ({
   tasks: SEED_TASKS.map(t => ({ ...t, id: cryptoId(), done: false, doneAt: null, xp: false })),
   research: SEED_RESEARCH.map(r => ({ ...r })),
-  notes: { stevey: '', wife: '' },
+  notes: { jay: '', wife: '' },
   decisions: [
     { id: cryptoId(), when: '2026-09-04', title: 'Started the Roof Roadmap', why: 'Needed a shared, structured way to plan and execute.', who: 'Both' }
   ],
@@ -714,6 +733,14 @@ function loadState() {
     const parsed = JSON.parse(raw);
     // Merge to handle missing fields after code updates
     const d = defaultState();
+    // Migrate old 'stevey' owner tags / note keys to 'jay'
+    if (parsed.tasks) {
+      parsed.tasks.forEach(t => { if (t.owner === 'stevey') t.owner = 'jay'; });
+    }
+    if (parsed.notes && parsed.notes.stevey !== undefined) {
+      parsed.notes.jay = parsed.notes.jay || parsed.notes.stevey || '';
+      delete parsed.notes.stevey;
+    }
     return { ...d, ...parsed, notes: { ...d.notes, ...(parsed.notes || {}) }, decisions_state: { ...d.decisions_state, ...(parsed.decisions_state || {}) } };
   } catch (e) {
     return defaultState();
@@ -785,7 +812,7 @@ function renderTasks(filter = 'all') {
   if (filter === 'open') tasks = tasks.filter(t => !t.done);
   else if (filter === 'done') tasks = tasks.filter(t => t.done);
   else if (filter === 'overdue') tasks = tasks.filter(t => !t.done && t.due && new Date(t.due) < today);
-  else if (['stevey','wife','both'].includes(filter)) tasks = tasks.filter(t => t.owner === filter);
+  else if (['jay','wife','both'].includes(filter)) tasks = tasks.filter(t => t.owner === filter);
 
   // Group by phase, in PHASES order
   container.innerHTML = PHASES.map(p => {
@@ -837,7 +864,7 @@ function renderTasks(filter = 'all') {
 }
 
 function ownerLabel(o) {
-  return o === 'stevey' ? 'Stevey' : o === 'wife' ? 'Wife' : 'Both';
+  return o === 'jay' ? 'Jay' : o === 'wife' ? 'Wife' : 'Both';
 }
 
 function formatDue(due) {
@@ -885,7 +912,7 @@ function renderResearch() {
 }
 
 function renderNotes() {
-  document.getElementById('noteStevey').value = state.notes.stevey || '';
+  document.getElementById('noteJay').value = state.notes.jay || '';
   document.getElementById('noteWife').value = state.notes.wife || '';
 }
 
@@ -984,7 +1011,7 @@ function computeStats() {
     phaseDone[p.id] = all.filter(t => t.done).length;
   });
 
-  const doneBy = { stevey: 0, wife: 0, both: 0 };
+  const doneBy = { jay: 0, wife: 0, both: 0 };
   state.tasks.filter(t => t.done).forEach(t => { doneBy[t.owner] = (doneBy[t.owner] || 0) + 1; });
 
   const earnedBadges = BADGES.filter(b => b.condition({ doneCount, total, overdue, thisWeek, thisMonth, nextDue, phaseDone, phaseTotal, streak: state.streak, xp: state.xp, doneBy })).map(b => b.id);
@@ -1139,14 +1166,14 @@ function wireNote(id) {
   el.addEventListener('input', () => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      const key = id === 'noteStevey' ? 'stevey' : 'wife';
+      const key = id === 'noteJay' ? 'jay' : 'wife';
       state.notes[key] = el.value;
       saveState();
       document.getElementById(id + 'Hint').textContent = 'Saved at ' + new Date().toLocaleTimeString('en-HK', { hour:'2-digit', minute:'2-digit' });
     }, 400);
   });
 }
-wireNote('noteStevey');
+wireNote('noteJay');
 wireNote('noteWife');
 
 /* ----- Toast + XP pop ----- */
